@@ -1,0 +1,1 @@
+json.extract! @patient, :ident, :status, :fname, :mname, :lname, :gender, :created_at, :updated_at

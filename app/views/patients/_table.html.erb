@@ -1,0 +1,29 @@
+<% if defined? patients and patients %>
+  <% if patients.count > 0 %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Ident</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td colspan="3"><%= paginate patients.collection %></td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <% patients.each do |p| %>
+          <tr>
+            <td><%= p.id %></td>
+            <td><%= p.ident %></td>
+            <td><%= p.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="info">No patients were found with the current search criteria.</p>
+  <% end %>
+<% end %>

@@ -1,0 +1,57 @@
+#center-col {
+  margin-right: 270px;
+  overflow: hidden;
+}
+
+.with-left {
+  margin-left: 270px;
+}
+
+#left-col {
+  width: 250px;
+  float: left;
+  overflow: hidden;
+  padding-right: 20px;
+}
+
+#right-col {
+  width: 250px;
+  float: right;
+  overflow: hidden;
+  padding-left: 20px;
+}
+
+@media (max-width: 979px) {
+  .navbar .brand {
+    padding-left: 5px;
+  }
+  #main {
+  }
+  #center-col {
+    margin-right: 0px;
+  }
+  .with-left {
+    margin-left: 200px;
+  }
+  #right-col {
+    float: none;
+    width: auto;
+    border: none;
+    padding: 0 0 4px 0;
+  }
+  #right-col a.med-icon-link {
+    width: 2px;
+    text-indent: -9000px;
+    height: 35px;
+    margin-right: 4px;
+    display: inline-block;
+  }
+  #left-col {
+    width: 190px;
+  }
+  h2 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+

@@ -1,0 +1,51 @@
+<% content_for :page_title do %>
+  <h2><%= @patient.name %>, <%= @patient.long_gender %><%= ", #{ @patient.age } y.o." if @patient.age %></h2>
+<% end %>
+
+<% content_for :actions do %>
+  <div class="action-block">
+    <%= link_to 'Add Appointment to Calendar', new_patient_appointment_path(@patient), class: 'med-icon-link med-calendar'  %>
+    <%= link_to 'Enter New Progress Note', new_patient_progress_note_path(@patient), class: 'med-icon-link med-note' %>
+    <%= link_to 'Record Medication Change', new_patient_prescription_path(@patient), class: 'med-icon-link med-prescription' %>
+    <%= link_to 'Enter New Allergy', new_patient_allergy_path(@patient), class: 'med-icon-link med-allergy' %>
+  </div>
+<% end %>
+
+<% content_for :quick_look do %>
+  <div class="module-block">
+    <h5>Allergies</h5>
+    <% unless @patient.allergies.empty? %>
+      <ul>
+      <% @patient.allergies.order('created_at desc').each do |a| %>
+        <li><%= a.medication_or_food %></li>
+      <% end %>
+      </ul>
+    <% else %>
+      <p class="info">No allergies recorded.</p>
+    <% end %>
+  </div>
+
+  <div class="module-block">
+    <h5>Medication Changes</h5>
+    <% unless @patient.prescriptions.empty? %>
+      <ul>
+        <% @patient.prescriptions.order('created_at desc').each do |p| %>
+          <li class="prescription-<%= p.medication_status %>">
+            <%= p.prescription %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="info">No prescriptions or medications changes recorded</p>
+    <% end %>
+  </div>
+
+  <div class="module-block">
+    <h5>Appointments and Visits</h5>
+    <% unless @patient.appointments.empty? %>
+
+    <% else %>
+      <p class="info">No appointments or other visits recorded</p>
+    <% end %>
+  </div>
+<% end %>

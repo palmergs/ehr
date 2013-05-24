@@ -1,0 +1,117 @@
+<%= form_for([@patient, @progress_note], html: { class: 'form-horizontal' }) do |f| %>
+  <%= errors_in @progress_note %>
+
+  
+  <div class="control-group">
+    <%= f.label :appointment, 'Date and Time', class: 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :appointment_id %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :interim_history, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :interim_history, class: 'input-block-level' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :medications_side_effects, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :medications_side_effects, class: 'input-block-level' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Mental Status Exam</label>
+    <div class="controls">
+      <div class="span6">
+        <div>
+          <%= f.label :appearance %>
+          <%= f.text_field :appearance, class: 'input-block-level' %>
+        </div>
+        <div>
+          <%= f.label :behavior %>
+          <%= f.text_field :behavior, class: 'input-block-level' %>
+        </div>
+        <div>
+          <%= f.label :speech %>
+          <%= f.text_field :speech, class: 'input-block-level' %>
+        </div>
+        <div>
+          <%= f.label :though_process %>
+          <%= f.text_field :though_process, class: 'input-block-level' %>
+        </div>
+        <div>
+          <%= f.label :mood_affect %>
+          <%= f.text_field :mood_affect, class: 'input-block-level' %>
+        </div>
+        <div>
+          <%= f.label :vital_sense %>
+          <%= f.text_field :vital_sense, class: 'input-block-level' %>
+        </div>
+      </div>
+      <div class="span6">
+        <div>
+          <%= f.label :sihi, 'SI/HI' %>
+          <%= f.text_field :sihi, class: 'input-block-level' %>
+        </div>
+        <div>
+          <%= f.label :hallucinations %>
+          <%= f.text_field :hallucinations, class: 'input-block-level' %>
+        </div>
+        <div>
+          <%= f.label :delusions %>
+          <%= f.text_field :delusions, class: 'input-block-level' %>
+        </div>
+        <div>
+          <%= f.label :phobias_obsessions, 'Phobias/Obsessions' %>
+          <%= f.text_field :phobias_obsessions, class: 'input-block-level' %>
+        </div>
+        <div>
+          <%= f.label :cognitive_state, 'Cognitive State' %>
+          <%= f.text_field :cognitive_state, class: 'input-block-level' %>
+        </div>
+        <div>
+          <%= f.label :insight_judgement, 'Insight/Judgment' %>
+          <%= f.text_field :insight_judgement, class: 'input-block-level' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :impression_diagnosis, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :impression_diagnosis, class: 'input-block-level' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :plan, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :plan, class: 'input-block-level' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Therapy</label>
+    <div class="controls">
+      <div class="span6">
+        <%= f.label :therapy_type, 'Therapy administered' %>
+        <%= f.text_field :therapy_type %>
+      </div>
+      <div class="span6">
+        <%= f.label :therapy_mins, 'Total time spent on therapy' %>
+        <%= f.number_field :therapy_mins %>
+      </div>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.label :majority_counceling_coord, 'Greater than 50% of time was spent on counseling and coordination:' %>
+      <%= f.check_box :majority_counceling_coord %>
+    </div>
+  </div>
+  <hr/>
+  <div class="control-group">
+    <div class="controls actions">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

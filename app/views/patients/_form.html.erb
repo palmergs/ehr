@@ -1,0 +1,51 @@
+
+  <div class="control-group required">
+    <%= f.label :ident, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ident, length: 6, class: 'span3' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :fname, 'Name', class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :fname, placeholder: 'First', class: 'span3' %>
+      <%= f.text_field :mname, placeholder: 'Middle', class: 'span2' %>
+      <%= f.text_field :lname, placeholder: 'Last', class: 'span3' %>
+    </div>
+  </div>    
+  <div class="control-group required">
+    <%= f.label :status, class: 'control-label' %>
+    <div class="controls">
+      <%= f.select :status, PatientStatus::ALL_STATUS, { include_blank: true }, class: 'span3' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :gender, 'Gender', class: 'control-label' %>
+    <div class="controls">
+      <%= f.select :gender, Gender::ALL_GENDER_FOR_SELECT, { include_blank: true }, class: 'span3' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :dob, 'Date of Birth', class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :dob, class: 'span4' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :marital_status, 'Marital Status', class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :marital_status, class: 'span4' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :ethnicity, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ethnicity, class: 'span4' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :occupation, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :occupation, class: 'span4' %>
+    </div>
+  </div>

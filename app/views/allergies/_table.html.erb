@@ -1,0 +1,25 @@
+<% if defined? allergies and allergies %>
+  <% unless allergies.empty? %>
+    <table class="table">
+      <thead>
+        <tr>
+
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+
+        </tr>
+      </tfoot>
+      <tbody>
+        <% allergies.each do |a| %>
+          <tr>
+
+          </tr>
+        <% end >
+      </tbody>
+    </table>
+  <% else %>
+    <p class="info">Unable to find any allergies with the current search criteria.</p>
+  <% end %>
+<% end %>

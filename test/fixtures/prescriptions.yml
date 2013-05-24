@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: one
+  patient: one
+  medication_status: Prescribed
+  prescription: Prescription Name
+  notes: In response to a condition
+
+two:
+  user: one
+  patient: one
+  medication_status: Continued
+  prescription: Rx2
+  notes: Seems to be working well

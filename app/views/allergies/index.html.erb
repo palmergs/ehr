@@ -1,0 +1,33 @@
+<h1>Listing allergies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Patient</th>
+      <th>Medication or food</th>
+      <th>Reaction</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @presenter.each do |allergy| %>
+      <tr>
+        <td><%= allergy.user_id %></td>
+        <td><%= allergy.patient_id %></td>
+        <td><%= allergy.medication_or_food %></td>
+        <td><%= allergy.reaction %></td>
+        <td><%= link_to 'Show', [@patient, allergy] %></td>
+        <td><%= link_to 'Edit', edit_patient_allergy_path(@patient, allergy) %></td>
+        <td><%= link_to 'Destroy', [@patient, allergy], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Allergy', new_patient_allergy_path %>

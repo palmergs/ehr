@@ -1,0 +1,8 @@
+.control-group {
+  &.required {
+    label.control-label {
+      font-weight: bold;
+      color: #800;
+    }
+  }
+}

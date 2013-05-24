@@ -1,0 +1,35 @@
+<h1>Listing prescriptions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Patient</th>
+      <th>Medication status</th>
+      <th>Prescription</th>
+      <th>Notes</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @presenter.each do |prescription| %>
+      <tr>
+        <td><%= prescription.user_id %></td>
+        <td><%= prescription.patient_id %></td>
+        <td><%= prescription.medication_status %></td>
+        <td><%= prescription.prescription %></td>
+        <td><%= prescription.notes %></td>
+        <td><%= link_to 'Show', [@patient, prescription] %></td>
+        <td><%= link_to 'Edit', edit_patient_prescription_path(@patient, prescription) %></td>
+        <td><%= link_to 'Destroy', [@patient, prescription], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prescription', new_patient_prescription_path(@patient) %>

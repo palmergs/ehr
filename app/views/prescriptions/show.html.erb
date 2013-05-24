@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @prescription.user_id %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @prescription.patient_id %>
+</p>
+
+<p>
+  <strong>Medication status:</strong>
+  <%= @prescription.medication_status %>
+</p>
+
+<p>
+  <strong>Prescription:</strong>
+  <%= @prescription.prescription %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @prescription.notes %>
+</p>
+
+<%= link_to 'Edit', edit_patient_prescription_path(@patient, @prescription) %> |
+<%= link_to 'Back', patient_prescriptions_path(@patient)  %>

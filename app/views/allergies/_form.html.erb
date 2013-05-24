@@ -1,0 +1,23 @@
+<%= form_for([@patient, @allergy]) do |f| %>
+  <%= errors_in @allergy %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :patient_id %><br>
+    <%= f.number_field :patient_id %>
+  </div>
+  <div class="field">
+    <%= f.label :medication_or_food %><br>
+    <%= f.text_field :medication_or_food %>
+  </div>
+  <div class="field">
+    <%= f.label :reaction %><br>
+    <%= f.text_field :reaction %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

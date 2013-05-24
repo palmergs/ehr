@@ -1,0 +1,47 @@
+a.med-icon-link {
+
+  display: block;
+  padding-left: 33px;
+  padding-bottom: 1px;
+  line-height: 37px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 2px center;
+  text-decoration: none;
+  font-family: 'Lintel-Light';
+  font-size: 14px;
+  color: #666666;
+  vertical-align: bottom;
+  overflow: hidden;
+  border: 2px solid #eee;
+  border-radius: 4px;
+  margin-bottom: 3px;
+  &:hover {
+    background-color: #eee;
+    color: #333;
+  }
+}
+
+a.med-calendar {
+  background-image: url('Calendar.png');
+}
+
+a.med-note {
+  background-image: url('PatientFile.png');
+}
+
+a.med-prescription {
+  background-image: url('Pills.png');
+}
+
+a.med-allergy {
+  background-image: url('Vial-X.png');
+}
+
+a.med-patient {
+  background-image: url('PatientFemale.png');
+}
+
+a.med-mental-status {
+  background-image: url('DefinedParameters.png');
+}

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @allergy.user_id %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @allergy.patient_id %>
+</p>
+
+<p>
+  <strong>Medication or food:</strong>
+  <%= @allergy.medication_or_food %>
+</p>
+
+<p>
+  <strong>Reaction:</strong>
+  <%= @allergy.reaction %>
+</p>
+
+<%= link_to 'Edit', edit_patient_allergy_path(@patient, @allergy) %> |
+<%= link_to 'Back', patient_allergies_path(@patient) %>

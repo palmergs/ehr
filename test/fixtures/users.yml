@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one: 
+  fname: Bob
+  lname: Example
+  email: dr1@example.com
+  encrypted_password: ABCDEF01010123231231232
+  sign_in_count: 0
+  confirmed_at: '2013-01-10 12:01:01'
+two: 
+  fname: Alice
+  lname: Doe
+  email: dr2@example.com
+  encrypted_password: 123112312321321
+  sign_in_count: 0
+  confirmed_at: '2013-01-20 12:01:01'

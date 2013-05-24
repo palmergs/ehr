@@ -1,0 +1,114 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @progress_note.user_id %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @progress_note.patient_id %>
+</p>
+
+<p>
+  <strong>Appointment:</strong>
+  <%= @progress_note.appointment_id %>
+</p>
+
+<p>
+  <strong>Interim history:</strong>
+  <%= @progress_note.interim_history %>
+</p>
+
+<p>
+  <strong>Medications side effects:</strong>
+  <%= @progress_note.medications_side_effects %>
+</p>
+
+<p>
+  <strong>Impression diagnosis:</strong>
+  <%= @progress_note.impression_diagnosis %>
+</p>
+
+<p>
+  <strong>Plan:</strong>
+  <%= @progress_note.plan %>
+</p>
+
+<p>
+  <strong>Therapy type:</strong>
+  <%= @progress_note.therapy_type %>
+</p>
+
+<p>
+  <strong>Therapy mins:</strong>
+  <%= @progress_note.therapy_mins %>
+</p>
+
+<p>
+  <strong>Majority counceling coord:</strong>
+  <%= @progress_note.majority_counceling_coord %>
+</p>
+
+<p>
+  <strong>Appearance:</strong>
+  <%= @progress_note.appearance %>
+</p>
+
+<p>
+  <strong>Behavior:</strong>
+  <%= @progress_note.behavior %>
+</p>
+
+<p>
+  <strong>Speech:</strong>
+  <%= @progress_note.speech %>
+</p>
+
+<p>
+  <strong>Though process:</strong>
+  <%= @progress_note.though_process %>
+</p>
+
+<p>
+  <strong>Mood affect:</strong>
+  <%= @progress_note.mood_affect %>
+</p>
+
+<p>
+  <strong>Vital sense:</strong>
+  <%= @progress_note.vital_sense %>
+</p>
+
+<p>
+  <strong>Sihi:</strong>
+  <%= @progress_note.sihi %>
+</p>
+
+<p>
+  <strong>Hallucinations:</strong>
+  <%= @progress_note.hallucinations %>
+</p>
+
+<p>
+  <strong>Delusions:</strong>
+  <%= @progress_note.delusions %>
+</p>
+
+<p>
+  <strong>Phobias obsessions:</strong>
+  <%= @progress_note.phobias_obsessions %>
+</p>
+
+<p>
+  <strong>Cognitive state:</strong>
+  <%= @progress_note.cognitive_state %>
+</p>
+
+<p>
+  <strong>Insight judgement:</strong>
+  <%= @progress_note.insight_judgement %>
+</p>
+
+<%= link_to 'Edit', edit_patient_progress_note_path(@patient, @progress_note) %> |
+<%= link_to 'Back', patient_progress_notes_path(@patient) %>

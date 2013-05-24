@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: one
+  patient: one
+  medication_or_food: MyString
+  reaction: MyString
+
+two:
+  user: two
+  patient: two
+  medication_or_food: MyString
+  reaction: MyString

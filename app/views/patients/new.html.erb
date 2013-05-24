@@ -1,0 +1,11 @@
+<%= form_for @patient, html: { class: 'form-horizontal' } do |f| %>
+  <%= errors_in @patient %>
+  <%= render partial: 'patients/form', locals: { f: f } %>
+  <hr/>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %> 
+      <%= link_to 'Back', patients_path %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,48 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: one
+  patient: one
+  interim_history: MyString
+  medications_side_effects: MyString
+  impression_diagnosis: MyString
+  plan: MyString
+  therapy_type: MyString
+  therapy_mins: MyString
+  majority_counceling_coord: false
+  appearance: MyString
+  behavior: MyString
+  speech: MyString
+  though_process: MyString
+  mood_affect: MyString
+  vital_sense: MyString
+  sihi: MyString
+  hallucinations: MyString
+  delusions: MyString
+  phobias_obsessions: MyString
+  cognitive_state: MyString
+  insight_judgement: MyString
+
+two:
+  user: one
+  patient: one
+  appointment: one
+  interim_history: MyString
+  medications_side_effects: MyString
+  impression_diagnosis: MyString
+  plan: MyString
+  therapy_type: MyString
+  therapy_mins: MyString
+  majority_counceling_coord: false
+  appearance: MyString
+  behavior: MyString
+  speech: MyString
+  though_process: MyString
+  mood_affect: MyString
+  vital_sense: MyString
+  sihi: MyString
+  hallucinations: MyString
+  delusions: MyString
+  phobias_obsessions: MyString
+  cognitive_state: MyString
+  insight_judgement: MyString

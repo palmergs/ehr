@@ -1,0 +1,34 @@
+header .navbar-inner {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lintel-Light';
+  font-weight: normal;
+  font-style: normal;
+}
+
+label, button, input[type=submit] {
+  font-family: 'Lintel-Light';
+  font-weight: normal;
+  font-style: normal;
+}
+
+::-webkit-input-placeholder {
+  font-style: italic;
+  color: #eee;
+}
+::-moz-placeholder {
+  font-style: italic;
+  color: #eee;
+}
+::-ms-input-placeholder {
+  font-style: italic;
+  color: #eee;
+}
+:-moz-placeholder {
+  font-style: italic;
+  color: #eee;
+}

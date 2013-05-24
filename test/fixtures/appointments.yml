@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: one
+  patient: one
+  appointment_type: Appointment
+  start_at: 2013-05-21 08:33:42
+  end_at: 2013-05-21 08:33:42
+  canceled_at: 2013-05-21 08:33:42
+  notes: MyString
+
+two:
+  user: two
+  patient: two
+  appointment_type: Phone Appointment
+  start_at: 2013-05-21 08:33:42
+  end_at: 2013-05-21 08:33:42
+  canceled_at: 2013-05-21 08:33:42
+  notes: MyString

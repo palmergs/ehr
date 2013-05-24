@@ -1,0 +1,11 @@
+module AppointmentType
+  INITIAL_EVALUATION =  'Initial Evaluation'
+  OFFICE_APPOINTMENT =  'Appointment'
+  PHONE_APPOINTMENT =   'Phone Appointment'
+  PHONE_CALL =          'Phone Call'
+  CONSULTATION =        'Consultation'
+  OTHER =               'Other'
+
+  VISIT_TYPES = [ INITIAL_EVALUATION, OFFICE_APPOINTMENT, CONSULTATION ]
+  APPOINTMENT_TYPES = [ INITIAL_EVALUATION, OFFICE_APPOINTMENT, PHONE_APPOINTMENT, PHONE_CALL, CONSULTATION, OTHER ]
+end

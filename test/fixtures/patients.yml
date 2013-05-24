@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ident: ABC
+  fname: Alice
+  lname: Charlie
+  mname: B
+  dob: 1970-05-05
+  status: Current
+  gender: F
+  ethnicity: White
+  occupation: Programmer
+  marital_status: Divorced
+  user: one
+
+two:
+  ident: DEF
+  fname: David
+  lname: Frank
+  mname: E
+  dob: 1980-05-05
+  status: Current
+  gender: M
+  ethnicity: Black
+  occupation: Accountant
+  marital_status: Married
+  user: two
