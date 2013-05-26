@@ -1,35 +1,48 @@
-<%= form_for([@patient, @appointment]) do |f| %>
-  <%= errors_in @appointment %>
-
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+  <div class="control-group">
+    <%= f.label :appointment_type, 'Type', class: 'control-label' %>
+    <div class="controls">
+      <%= f.select :appointment_type, AppointmentType::APPOINTMENT_TYPES, class: 'span3' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :patient_id %><br>
-    <%= f.number_field :patient_id %>
+  <div class="control-group">
+    <label class="control-label">Date and Time</label>
+    <div class="controls">
+      <div class="span6">
+        <%= f.label :start_at_str, 'Start' %>
+        <%= datetime_input f, :start_at_str %>
+      </div>
+      <div class="span6">
+        <%= f.label :end_at_str, 'End' %>
+        <%= datetime_input f, :end_at_str %>
+      </div>
+    </div>
+    <%= javascript_tag do %>
+      $(function() {
+        var ep = $('.end_at_str-picker').datetimepicker({
+            language: 'en',
+            pick12HourFormat: true,
+            pickSeconds: false });
+        var sp = $('.start_at_str-picker').datetimepicker({
+            language: 'en',
+            pick12HourFormat: true,
+            pickSeconds: false }).on('changeDate', function(e) {
+              var ev = sp.data('datetimepicker').getDate();
+              var dt = new Date(ev.getYear(), 
+                  ev.getMonth(),
+                  ev.getDate(),
+                  ev.getHours(),
+                  ev.getMinutes() + 30,
+                  0,
+                  0);
+              ep.data('datetimepicker').setDate(dt);
+              ep[0].focus();
+            });
+      });
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :appointment_type %><br>
-    <%= f.text_field :appointment_type %>
+  <div class="control-group">
+    <%= f.label :notes, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :notes, class: 'input-block-level' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :start_at %><br>
-    <%= f.datetime_select :start_at %>
-  </div>
-  <div class="field">
-    <%= f.label :end_at %><br>
-    <%= f.datetime_select :end_at %>
-  </div>
-  <div class="field">
-    <%= f.label :canceled_at %><br>
-    <%= f.datetime_select :canceled_at %>
-  </div>
-  <div class="field">
-    <%= f.label :notes %><br>
-    <%= f.text_field :notes %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

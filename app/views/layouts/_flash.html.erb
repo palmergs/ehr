@@ -1,0 +1,20 @@
+<% if defined? flash %>
+  <% Array(flash[:error]).each do |f| %>
+    <div class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Error!</strong> <%= f.to_s %>
+    </div>
+  <% end %>
+  <% Array(flash[:warning]).each do |f| %>
+    <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Warning!</strong> <%= f.to_s %>
+    </div>
+  <% end %>
+  <% (Array(flash[:notice]) + Array(flash[:info])).each do |f| %>
+    <div class="alert alert-info">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= f.to_s %>
+    </div>
+  <% end %>
+<% end %>

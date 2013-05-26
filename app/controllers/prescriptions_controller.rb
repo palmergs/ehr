@@ -22,13 +22,19 @@ class PrescriptionsController < ApplicationController
   end
 
   def create
+    @appointment = Appointment.find_or_create_for(current_user, 
+        @patient, 
+        params[:prescription][:appointment_id], 
+        params[:appointment])
+
     @prescription = Prescription.new(prescription_params)
     @prescription.patient = @patient
     @prescription.user = current_user
+    @prescription.appointment = @appointment
 
     respond_to do |format|
       if @prescription.save
-        format.html { redirect_to [@patient, @prescription], notice: 'Prescription was successfully created.' }
+        format.html { redirect_to @patient, notice: 'Prescription was successfully created.' }
         format.json { render action: 'show', status: :created, location: @prescription }
       else
         format.html { render action: 'new' }
@@ -40,7 +46,7 @@ class PrescriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @prescription.update(prescription_params)
-        format.html { redirect_to [@patient, @prescription], notice: 'Prescription was successfully updated.' }
+        format.html { redirect_to @patient, notice: 'Prescription was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -52,7 +58,7 @@ class PrescriptionsController < ApplicationController
   def destroy
     @prescription.destroy
     respond_to do |format|
-      format.html { redirect_to patient_prescriptions_url(@patient) }
+      format.html { redirect_to patient_url(@patient) }
       format.json { head :no_content }
     end
   end

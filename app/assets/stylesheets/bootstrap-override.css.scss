@@ -16,19 +16,58 @@ label, button, input[type=submit] {
   font-style: normal;
 }
 
+label input[type=checkbox] {
+  margin: -2px 8px 2px 0;
+}
+
+.or {
+  font-size: 12px;
+  font-family: 'Lintel-Light';
+  font-weight: normal;
+}
+
+.module-block {
+  ul, ol {
+    margin: 0;
+    li {
+      margin-bottom: 4px;
+    }
+  }
+  a { color: #333; }
+  a:hover {
+    background-color: transparent;
+    color: #000;
+  }
+  a:visited {
+    color: #333;
+  }
+}
+
+.label {
+  font-weight: normal;
+}
+
 ::-webkit-input-placeholder {
   font-style: italic;
+  font-size: 10px;
+  font-weight: normal;
   color: #eee;
 }
 ::-moz-placeholder {
   font-style: italic;
+  font-size: 10px;
+  font-weight: normal;
   color: #eee;
 }
 ::-ms-input-placeholder {
   font-style: italic;
+  font-size: 10px;
+  font-weight: normal;
   color: #eee;
 }
 :-moz-placeholder {
   font-style: italic;
+  font-size: 10px;
+  font-weight: normal;
   color: #eee;
 }

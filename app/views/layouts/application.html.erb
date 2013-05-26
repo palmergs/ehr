@@ -34,6 +34,7 @@
       </div>
     </header>
     <div id="main" class="container-fluid">
+      <%= render partial: 'layouts/flash' %>
       <div id="page-title">
         <%= content_for :page_title %>
       </div>
@@ -53,10 +54,6 @@
     </div>
     <footer>
       <div class="container-fluid">
-        <% if user_signed_in? %>
-          <p>Signed in as: <%= current_user.inspect %></p>
-          <p>Session vars: <%= user_session.inspect %></p>
-        <% end %>
       </div>
     </footer>
   </body>

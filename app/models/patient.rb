@@ -42,8 +42,37 @@ class Patient < ActiveRecord::Base
         first
   end
 
+  def current_and_past_appointments
+    self.appointments.occurred_before.order('start_at desc')
+  end
+
   def next_appointment
     self.appointments.scheduled_after.order('start_at asc').first
+  end
+
+  def dob_str= str
+    tmp = Date.strptime(str, '%m/%d/%Y')
+    self.dob = tmp
+  rescue Exception => e
+    errors.add(:dob, 'Date must be in MM/DD/YYYY format')
+  end
+
+  def dob_str 
+    if self.dob
+      self.dob.strftime('%m/%d/%Y')
+    end
+  end
+
+  def prescriptions_in_order desc = true
+    self.prescriptions.sort do |lhs,rhs|
+      lhs_tm = lhs.appointment ? lhs.appointment.start_at : lhs.created_at
+      rhs_tm = rhs.appointment ? rhs.appointment.start_at : rhs.created_at
+      if desc
+        rhs_tm <=> lhs_tm
+      else
+        lhs_tm <=> rhs_tm
+      end
+    end
   end
 
   def age

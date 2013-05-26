@@ -21,5 +21,9 @@ module Ehr
     # config.i18n.default_locale = :de
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    config.action_view.field_error_proc = Proc.new {|html_tag, instance|
+      "#{ html_tag }<span class=\"text-error\">#{ Array(instance.error_message).join(', ') }</span>".html_safe
+    }
   end
 end

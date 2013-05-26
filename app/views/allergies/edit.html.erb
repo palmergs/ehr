@@ -1,6 +1,15 @@
-<h1>Editing allergy</h1>
+<% content_for :page_title do %>
+  <h2>Edit Allergy for <%= @patient.ident %></h2>
+<% end %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', [@patient, @allergy] %> |
-<%= link_to 'Back', patient_allergies_path(@patient) %>
+<%= form_for([@patient, @allergy], html: { class: 'form-horizontal' }) do |f| %>
+  <%= errors_in @allergy %>
+  <%= render partial: 'allergies/form', locals: { f: f } %>
+  <hr/>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+      <%= link_to 'Show', [@patient, @allergy] %> |
+      <%= link_to 'Back', patient_allergies_path(@patient) %>
+  </div>
+<% end %>

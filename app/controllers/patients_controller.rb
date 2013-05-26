@@ -13,6 +13,7 @@ class PatientsController < ApplicationController
   end
 
   def show
+    @patient = PatientPresenter.new(current_user, @patient)
     respond_to do |format|
       format.html
       format.json
@@ -62,10 +63,10 @@ class PatientsController < ApplicationController
   end
 
   def create_params
-    params.require(:patient).permit(:ident, :status, :fname, :mname, :lname, :dob, :marital_status, :occupation, :ethnicity, :gender)
+    params.require(:patient).permit(:ident, :status, :fname, :mname, :lname, :dob, :dob_str, :marital_status, :occupation, :ethnicity, :gender)
   end
 
   def update_params
-    params.require(:patient).permit(:fname, :mname, :lname, :dob, :marital_status, :occupation, :ethnicity, :gender)
+    params.require(:patient).permit(:fname, :mname, :lname, :dob, :dob_str, :marital_status, :occupation, :ethnicity, :gender)
   end
 end

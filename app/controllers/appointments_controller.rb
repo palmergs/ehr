@@ -25,7 +25,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
     @appointment.patient = @patient
     @appointment.user = current_user
-
+    Rails.logger.debug("@appointment = #{ @appointment.inspect }")
     respond_to do |format|
       if @appointment.save
         format.html { redirect_to [@patient, @appointment], notice: 'Appointment was successfully created.' }
@@ -68,6 +68,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:appointment_type, :start_at, :end_at, :canceled_at, :notes)
+    params.require(:appointment).permit(:appointment_type, :start_at_str, :end_at_str, :notes)
   end
 end

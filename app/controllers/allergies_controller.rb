@@ -27,7 +27,7 @@ class AllergiesController < ApplicationController
     @allergy.patient = @patient
     respond_to do |format|
       if @allergy.save
-        format.html { redirect_to [@patient, @allergy], notice: 'Allergy was successfully created.' }
+        format.html { redirect_to @patient, notice: 'Allergy was successfully created.' }
         format.json { render action: 'show', status: :created, location: @allergy }
       else
         format.html { render action: 'new' }
@@ -39,7 +39,7 @@ class AllergiesController < ApplicationController
   def update
     respond_to do |format|
       if @allergy.update(allergy_params)
-        format.html { redirect_to [@patient, @allergy], notice: 'Allergy was successfully updated.' }
+        format.html { redirect_to @patient, notice: 'Allergy was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -51,7 +51,7 @@ class AllergiesController < ApplicationController
   def destroy
     @allergy.destroy
     respond_to do |format|
-      format.html { redirect_to patient_allergies_url(@patient) }
+      format.html { redirect_to patient_url(@patient) }
       format.json { head :no_content }
     end
   end

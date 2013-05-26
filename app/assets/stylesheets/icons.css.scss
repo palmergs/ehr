@@ -1,7 +1,7 @@
 a.med-icon-link {
 
   display: block;
-  padding-left: 33px;
+  padding-left: 37px;
   padding-bottom: 1px;
   line-height: 37px;
   background-color: transparent;
@@ -44,4 +44,69 @@ a.med-patient {
 
 a.med-mental-status {
   background-image: url('DefinedParameters.png');
+}
+
+.bullet-icon {
+  display: block;
+  padding-left: 20px;
+  min-height: 18px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 2px 2px;
+}
+
+.appointment-InitialEvaluation {
+  @extend .bullet-icon;
+  background-image: url('silk/report_add.png');
+}
+
+.appointment-Appointment {
+  @extend .bullet-icon;
+  background-image: url('silk/report.png');
+}
+
+.appointment-PhoneAppointment {
+  @extend .bullet-icon;
+  background-image: url('silk/telephone.png');
+}
+
+.appointment-PhoneCall {
+  @extend .bullet-icon;
+  background-image: url('silk/telephone_red.png');
+}
+
+.appointment-Consultation {
+  @extend .bullet-icon;
+  background-image: url('silk/user_suit.png');
+}
+
+.allergy {
+  @extend .bullet-icon;
+  background-image: url('silk/allergy.png');
+}
+
+.prescription-Prescribed {
+  @extend .bullet-icon;
+  background-image: url('silk/plus_green.png');
+}
+.prescription-Increased {
+  @extend .bullet-icon;
+  background-image: url('silk/arrow_up.png');
+}
+
+.prescription-Ceased {
+  @extend .bullet-icon;
+  background-image: url('silk/minus_green.png');
+}
+.prescription-Decreased {
+  @extend .bullet-icon;
+  background-image: url('silk/arrow_down.png');
+}
+.prescription-Continued {
+  @extend .bullet-icon;
+  background-image: url('silk/bullet_tick.png');
+}
+
+.prescription-Unknown {
+  @extend .bullet-icon;
 }

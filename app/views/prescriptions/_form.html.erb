@@ -1,28 +1,67 @@
-<%= form_for([@patient, @prescription]) do |f| %>
 
-  <%= errors_in(@prescription) %>
-
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+  <div class="control-group required">
+    <%= f.label :appointment, 'Date and Time', class: 'control-label' %>
+    <div class="controls">
+      <div class="span3">
+        <label>Select Existing Appointment</label>
+        <%= f.collection_select :appointment_id, @patient.current_and_past_appointments, :id, :summary, { include_blank: true }, class: 'input-block-level'  %>
+      </div>
+      <div class="span1 or">or</div>
+      <div class="span8">
+        <%= fields_for Appointment.new do |fields| %>
+          <div class="span4">
+            <%= fields.label :appointment_type, 'Type' %>
+            <%= fields.select :appointment_type, AppointmentType::APPOINTMENT_TYPES, { }, class: 'input-block-level' %>
+          </div>
+          <div class="span4">
+            <%= fields.label :start_at_str, 'Start' %>
+            <%= datetime_input fields, :start_at_str, class: 'span12', inner_class: 'span9' %>
+          </div>
+          <div class="span4">
+            <%= fields.label :end_at_str, 'End' %>
+            <%= datetime_input fields, :end_at_str, class: 'span12', inner_class: 'span9' %>
+          </div>
+          <%= javascript_tag do %>
+            $(function() {
+              var ep = $('.end_at_str-picker').datetimepicker({
+                  language: 'en',
+                  pick12HourFormat: true,
+                  pickSeconds: false });
+              var sp = $('.start_at_str-picker').datetimepicker({
+                  language: 'en',
+                  pick12HourFormat: true,
+                  pickSeconds: false }).on('changeDate', function(e) {
+                    var ev = sp.data('datetimepicker').getDate();
+                    var dt = new Date(ev.getYear(), 
+                        ev.getMonth(),
+                        ev.getDate(),
+                        ev.getHours(),
+                        ev.getMinutes() + 30,
+                        0,
+                        0);
+                    ep.data('datetimepicker').setDate(dt);
+                    ep[0].focus();
+                  });
+            });
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :patient_id %><br>
-    <%= f.number_field :patient_id %>
+  <div class="control-group">
+    <%= f.label :prescription, class: 'control-label' %>
+    <div class="controls">
+      <div class="span2">
+        <%= f.select :medication_status, MedicationStatus::ALL, {}, class: 'input-block-level' %>
+      </div>
+      <div class="span10">
+        <%= f.text_field :prescription, class: 'input-block-level' %>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :medication_status %><br>
-    <%= f.text_field :medication_status %>
+  <div class="control-group">
+    <%= f.label :notes, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :notes, class: 'input-block-level' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :prescription %><br>
-    <%= f.text_field :prescription %>
-  </div>
-  <div class="field">
-    <%= f.label :notes %><br>
-    <%= f.text_field :notes %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

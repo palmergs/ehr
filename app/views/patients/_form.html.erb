@@ -5,6 +5,12 @@
       <%= f.text_field :ident, length: 6, class: 'span3' %>
     </div>
   </div>
+  <div class="control-group required">
+    <%= f.label :status, class: 'control-label' %>
+    <div class="controls">
+      <%= f.select :status, PatientStatus::ALL_STATUS, { include_blank: true }, class: 'span3' %>
+    </div>
+  </div>
   <div class="control-group">
     <%= f.label :fname, 'Name', class: 'control-label' %>
     <div class="controls">
@@ -13,12 +19,6 @@
       <%= f.text_field :lname, placeholder: 'Last', class: 'span3' %>
     </div>
   </div>    
-  <div class="control-group required">
-    <%= f.label :status, class: 'control-label' %>
-    <div class="controls">
-      <%= f.select :status, PatientStatus::ALL_STATUS, { include_blank: true }, class: 'span3' %>
-    </div>
-  </div>
   <div class="control-group">
     <%= f.label :gender, 'Gender', class: 'control-label' %>
     <div class="controls">
@@ -28,9 +28,16 @@
   <div class="control-group">
     <%= f.label :dob, 'Date of Birth', class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :dob, class: 'span4' %>
+      <%= date_input f, :dob_str %>
     </div>
   </div>
+  <%= javascript_tag do %>
+    $(function() {
+      var dt = $('.dob_str-picker').datetimepicker({
+          language: 'en',
+          pickTime: false });
+    });
+  <% end %>
   <div class="control-group">
     <%= f.label :marital_status, 'Marital Status', class: 'control-label' %>
     <div class="controls">

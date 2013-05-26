@@ -1,11 +1,52 @@
-<%= form_for([@patient, @progress_note], html: { class: 'form-horizontal' }) do |f| %>
-  <%= errors_in @progress_note %>
 
   
-  <div class="control-group">
+  <div class="control-group required">
     <%= f.label :appointment, 'Date and Time', class: 'control-label' %>
     <div class="controls">
-      <%= f.number_field :appointment_id %>
+      <div class="span3">
+        <label>Select Existing Appointment</label>
+        <%= f.collection_select :appointment_id, @patient.current_and_past_appointments, :id, :summary, { include_blank: true }, class: 'input-block-level'  %>
+      </div>
+      <div class="span1 or">or</div>
+      <div class="span8">
+        <%= fields_for Appointment.new do |fields| %>
+          <div class="span4">
+            <%= fields.label :appointment_type, 'Type' %>
+            <%= fields.select :appointment_type, AppointmentType::APPOINTMENT_TYPES, { }, class: 'input-block-level' %>
+          </div>
+          <div class="span4">
+            <%= fields.label :start_at_str, 'Start' %>
+            <%= datetime_input fields, :start_at_str, class: 'span12', inner_class: 'span9' %>
+          </div>
+          <div class="span4">
+            <%= fields.label :end_at_str, 'End' %>
+            <%= datetime_input fields, :end_at_str, class: 'span12', inner_class: 'span9' %>
+          </div>
+          <%= javascript_tag do %>
+            $(function() {
+              var ep = $('.end_at_str-picker').datetimepicker({
+                  language: 'en',
+                  pick12HourFormat: true,
+                  pickSeconds: false });
+              var sp = $('.start_at_str-picker').datetimepicker({
+                  language: 'en',
+                  pick12HourFormat: true,
+                  pickSeconds: false }).on('changeDate', function(e) {
+                    var ev = sp.data('datetimepicker').getDate();
+                    var dt = new Date(ev.getYear(), 
+                        ev.getMonth(),
+                        ev.getDate(),
+                        ev.getHours(),
+                        ev.getMinutes() + 30,
+                        0,
+                        0);
+                    ep.data('datetimepicker').setDate(dt);
+                    ep[0].focus();
+                  });
+            });
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="control-group">
@@ -104,14 +145,6 @@
   </div>
   <div class="control-group">
     <div class="controls">
-      <%= f.label :majority_counceling_coord, 'Greater than 50% of time was spent on counseling and coordination:' %>
-      <%= f.check_box :majority_counceling_coord %>
+      <%= f.label :majority_counceling_coord, f.check_box(:majority_counceling_coord) + 'Greater than 50% of time was spent on counseling and coordination:' %>
     </div>
   </div>
-  <hr/>
-  <div class="control-group">
-    <div class="controls actions">
-      <%= f.submit %>
-    </div>
-  </div>
-<% end %>

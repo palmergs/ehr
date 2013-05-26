@@ -22,10 +22,15 @@ class ProgressNotesController < ApplicationController
   end
 
   def create
+    @appointment = Appointment.find_or_create_for(current_user, 
+        @patient, 
+        params[:progress_note][:appointment_id], 
+        params[:appointment])
+
     @progress_note = ProgressNote.new(progress_note_params)
     @progress_note.user = current_user
     @progress_note.patient = @patient
-
+    @progress_note.appointment = @appointment
     respond_to do |format|
       if @progress_note.save
         format.html { redirect_to [@patient, @progress_note], notice: 'Progress note was successfully created.' }

@@ -1,6 +1,16 @@
-<h1>Editing progress_note</h1>
+<% content_for :page_title do %>
+  <h2>Edit Progress Note for <%= @patient.ident %></h2>
+<% end %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', [@patient, @progress_note] %> |
-<%= link_to 'Back', patient_progress_notes_path(@patient) %>
+<%= form_for([@patient, @progress_note], html: { class: 'form-horizontal' }) do |f| %>
+  <%= errors_in @progress_note %>
+  <%= render partial: 'progress_notes/form', locals: { f: f }  %>
+  <hr/>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+      <%= link_to 'Show', [@patient, @progress_note] %> |
+      <%= link_to 'Back', patient_progress_notes_path(@patient) %>
+    </div>
+  </div>
+<% end %>

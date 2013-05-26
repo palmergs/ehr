@@ -1,0 +1,11 @@
+<% if defined? field and field %>
+  <% if defined? f and f %>
+    <% options ||= Hash.new %>
+    <div class="input-append date datetime-picker <%= field.to_s %>-picker <%= options[:class] %>">
+      <%= f.text_field field.to_sym, "data-format" => 'MM/dd/yyyy HH:mm PP', class: options[:inner_class] %>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+    </div>
+  <% end %>
+<% end %>

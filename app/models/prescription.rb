@@ -3,6 +3,7 @@ class Prescription < ActiveRecord::Base
 
   belongs_to :patient
   belongs_to :user
+  belongs_to :appointment
 
   validates :patient_id, :user_id, presence: true
 
@@ -11,5 +12,21 @@ class Prescription < ActiveRecord::Base
   scope :by_allowed_user, -> (user) { allowed_user_lambda.call(user) }
   scope :by_created_at, -> (stdt, endt) { date_range_lambda.call(stdt, endt) }
   scope :by_search, -> (q) { fields_like_lambda.call(q, :prescription) }
+
+  def summary 
+    arr = []
+    arr << appointment.start_at.strftime('%m/%d/%Y') if appointment
+    arr << self.medication_status
+    arr << self.prescription
+    arr.join(' ')
+  end
+
+  def date
+    self.appointment ? self.apppointment.start_at : self.created_at
+  end
+
+  def date_str
+    self.date.strftime('%m/%d/%Y')
+  end
 
 end

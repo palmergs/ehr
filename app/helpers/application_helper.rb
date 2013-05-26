@@ -20,4 +20,12 @@ module ApplicationHelper
       end
     end
   end
+
+  def datetime_input form, field, options = HashWithIndifferentAccess.new
+    render partial: 'layouts/datetime_input', locals: { f: form, field: field, options: options }
+  end
+
+  def date_input form, field, options = HashWithIndefferentAccess.new
+    render partial: 'layouts/date_input', locals: { f: form, field: field, options: options }
+  end
 end
