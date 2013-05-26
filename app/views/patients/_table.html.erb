@@ -3,22 +3,28 @@
     <table class="table">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Ident</th>
           <th>Name</th>
+          <th>&nbsp;</th>
+          <th>DOB</th>
+          <th>Last</th>
+          <th>Scheduled</th>
         </tr>
       </thead>
       <tfoot>
         <tr>
-          <td colspan="3"><%= paginate patients.collection %></td>
+          <td colspan="5"><%= paginate patients.collection %></td>
         </tr>
       </tfoot>
       <tbody>
         <% patients.each do |p| %>
           <tr>
-            <td><%= p.id %></td>
-            <td><%= p.ident %></td>
+            <td><%= link_to p.ident, patient_path(p) %></td>
             <td><%= p.name %></td>
+            <td><%= gender_icon p.gender %></td>
+            <td><%= p.dob_str %></td>
+            <td><%= appointment(p.last_interaction, false) %></td>
+            <td><%= appointment(p.next_appointment, false) %></td>
           </tr>
         <% end %>
       </tbody>

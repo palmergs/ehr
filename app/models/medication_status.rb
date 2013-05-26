@@ -7,6 +7,6 @@ module MedicationStatus
   DECREASED =   'Decreased'
   UNKNOWN =     'Unknown'
 
-  ALL = [ PRESCRIBED, CONTINUED, INCREASED, DECREASED, CEASED, UNKNOWN ]
+  ALL = [ PRESCRIBED, CONTINUED, INCREASED, DECREASED, CEASED, UNKNOWN ].freeze
 
 end

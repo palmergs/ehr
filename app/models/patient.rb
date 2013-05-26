@@ -31,11 +31,12 @@ class Patient < ActiveRecord::Base
   end   
 
   def last_interaction
-    self.appointments.occurred_before.order('start_at desc').first
+    self.appointments.not_canceled.occurred_before.order('start_at desc').first
   end
 
   def last_visit
     self.appointments.
+        not_canceled.
         occurred_before.
         where(appointment_type: AppointmentType::VISIT_TYPES).
         order('start_at desc').
@@ -47,7 +48,7 @@ class Patient < ActiveRecord::Base
   end
 
   def next_appointment
-    self.appointments.scheduled_after.order('start_at asc').first
+    self.appointments.scheduled_after.not_canceled.order('start_at asc').first
   end
 
   def dob_str= str

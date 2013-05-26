@@ -1,39 +1,50 @@
-<p id="notice"><%= notice %></p>
+<% content_for :page_title do %>
+  <h2><%= @patient.name %>, <%= @patient.long_gender %><%= ", #{ @patient.age } y.o." if @patient.age %></h2>
+<% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @appointment.user_id %>
-</p>
 
-<p>
-  <strong>Patient:</strong>
-  <%= @appointment.patient_id %>
-</p>
+<% content_for :actions do %>
+  <div class="action-block">
+    <%= link_to 'Add Appointment to Calendar', new_patient_appointment_path(@patient), class: 'med-icon-link med-calendar'  %>
+    <%= link_to 'Enter New Progress Note', 
+        new_patient_progress_note_path(@patient, appointment_id: @appointment.id), 
+        class: 'med-icon-link med-note' %>
+    <%= link_to 'Record Medication Change', 
+        new_patient_prescription_path(@patient, appointment_id: @appointment.id), 
+        class: 'med-icon-link med-prescription' %>
+    <%= link_to 'Enter New Allergy', new_patient_allergy_path(@patient), class: 'med-icon-link med-allergy' %>
+  </div>
+<% end %>
 
-<p>
-  <strong>Appointment type:</strong>
-  <%= @appointment.appointment_type %>
-</p>
+<% content_for :quick_look do %>
+  <div class="module-block">
+    <h5>Allergies</h5>
+    <% unless @patient.allergies.empty? %>
+      <ul>
+      <% @patient.allergies.order('created_at desc').each do |a| %>
+        <li><span class="allergy"><%= a.medication_or_food %></span></li>
+      <% end %>
+      </ul>
+    <% else %>
+      <p class="info">No allergies recorded.</p>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Start at:</strong>
-  <%= @appointment.start_at %>
-</p>
+  <div class="module-block">
+    <h5>Medication Changes</h5>
+    <% unless @patient.prescriptions.empty? %>
+      <ul>
+        <% @patient.prescriptions_in_order.each do |p| %>
+          <li><%= prescription(p) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="info">No prescriptions or medications changes recorded</p>
+    <% end %>
+  </div>
+<% end %>
 
-<p>
-  <strong>End at:</strong>
-  <%= @appointment.end_at %>
-</p>
-
-<p>
-  <strong>Canceled at:</strong>
-  <%= @appointment.canceled_at %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%= @appointment.notes %>
-</p>
+<%= render partial: 'appointments/display', locals: { appointment: @appointment } %>
 
 <%= link_to 'Edit', edit_patient_appointment_path(@patient, @appointment) %> |
 <%= link_to 'Back', patient_appointments_path(@patient) %>

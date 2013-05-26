@@ -54,66 +54,7 @@
   </div>
 <% end %>
 
-<% @patient.by_date.each_pair do |dttm, hash| %>
-  <h4><%= dttm %></h4>
-  <label>Prescriptions</label>
-  <% hash[:prescriptions].each do |p| %>
-    <p><%= prescription(p) %></p>
-  <% end %>
-  <% hash[:progress_notes].each do |pn| %>
 
-    <label>Interim History</label>
-    <p><%= pn.interim_history %></p>
-
-    <label>Medications and Side Effects</label>
-    <p><%= pn.medications_side_effects %></p>
-
-    <label>Impression and Diagnosis</label>
-    <p><%= pn.impression_diagnosis %></p>
-
-    <label>Mental Status Exam</label>
-    <div class="container-fluid">
-      <div class="span6">
-        <label>Appearance</label>
-        <p><%= pn.appearance %></p>
-
-        <label>Behavior</label>
-        <p><%= pn.behavior %></p>
-
-        <label>Speech</label>
-        <p><%= pn.speech %></p>
-
-        <label>Thought Process</label>
-        <p><%= pn.though_process %></p>
-
-        <label>Mood/Affect</label>
-        <p><%= pn.mood_affect %></p>
-
-        <label>Vital Sense/Self Attitude</label>
-        <p><%= pn.vital_sense %></p>
-      </div>
-      <div class="span6">
-        <label>SI/HI</label>
-        <p><%= pn.sihi %></p>
-
-        <label>Hallucinations</label>
-        <p><%= pn.hallucinations %></p>
-
-        <label>Delusions</label>
-        <p><%= pn.delusions %></p>
-
-        <label>Phobias/Obsessions</label>
-        <p><%= pn.phobias_obsessions %></p>
-
-        <label>Cognitive State</label>
-        <p><%= pn.cognitive_state %></p>
-
-        <label>Insight/Judgement</label>
-        <p><%= pn.insight_judgement %></p>
-      </div>
-    </div>
-
-    <label>Plan</label>
-    <p><%= pn.plan %></p>
-  <% end %>
+<% @patient.appointments.occurred_before.order('start_at desc').each do |a| %>
+  <%= render partial: 'appointments/display', locals: { appointment: a } %>
 <% end %>

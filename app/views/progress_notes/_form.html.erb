@@ -9,7 +9,7 @@
             options_from_collection_for_select(@patient.current_and_past_appointments, 
                 :id, 
                 :summary, 
-                @progress_note.appointment_id), 
+                (@progress_note.appointment_id || params[:appointment_id])), 
             include_blank: true, 
             class: 'input-block-level'  %>
       </div>
@@ -18,7 +18,7 @@
         <%= fields_for Appointment.new do |fields| %>
           <div class="span4">
             <%= fields.label :appointment_type, 'Type' %>
-            <%= fields.select :appointment_type, AppointmentType::APPOINTMENT_TYPES, { }, class: 'input-block-level' %>
+            <%= fields.select :appointment_type, AppointmentType::APPOINTMENT_TYPES, { include_blank: true }, class: 'input-block-level' %>
           </div>
           <div class="span4">
             <%= fields.label :start_at_str, 'Start' %>
