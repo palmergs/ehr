@@ -24,7 +24,7 @@ class ProgressNotesController < ApplicationController
   def create
     @appointment = Appointment.find_or_create_for(current_user, 
         @patient, 
-        params[:progress_note][:appointment_id], 
+        params[:appointment_id], 
         params[:appointment])
 
     @progress_note = ProgressNote.new(progress_note_params)
@@ -57,7 +57,7 @@ class ProgressNotesController < ApplicationController
   def destroy
     @progress_note.destroy
     respond_to do |format|
-      format.html { redirect_to patient_progress_notes_url(@patient) }
+      format.html { redirect_to patient_url(@patient) }
       format.json { head :no_content }
     end
   end

@@ -7,6 +7,7 @@ class ProgressNotesControllerTest < ActionController::TestCase
     @user = users(:one)
     sign_in @user
     @patient = patients(:one)
+    @appointment = appointments(:one)
     @progress_note = progress_notes(:one)
   end
 
@@ -23,7 +24,7 @@ class ProgressNotesControllerTest < ActionController::TestCase
 
   test "should create progress_note" do
     assert_difference('ProgressNote.count') do
-      post :create, patient_id: @patient.id, 
+      post :create, patient_id: @patient.id, appointment_id: @appointment.id,
           progress_note: { appearance: @progress_note.appearance, 
               behavior: @progress_note.behavior, 
               cognitive_state: @progress_note.cognitive_state, 
@@ -59,7 +60,7 @@ class ProgressNotesControllerTest < ActionController::TestCase
   end
 
   test "should update progress_note" do
-    patch :update, patient_id: @patient.id, id: @progress_note, 
+    patch :update, patient_id: @patient.id, id: @progress_note, appointment_id: @appointment.id,
         progress_note: { appearance: @progress_note.appearance, 
             behavior: @progress_note.behavior, 
             cognitive_state: @progress_note.cognitive_state, 
@@ -87,6 +88,6 @@ class ProgressNotesControllerTest < ActionController::TestCase
       delete :destroy, id: @progress_note, patient_id: @patient.id
     end
 
-    assert_redirected_to patient_progress_notes_path(@patient)
+    assert_redirected_to patient_path(@patient)
   end
 end

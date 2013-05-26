@@ -5,7 +5,13 @@
     <div class="controls">
       <div class="span3">
         <label>Select Existing Appointment</label>
-        <%= f.collection_select :appointment_id, @patient.current_and_past_appointments, :id, :summary, { include_blank: true }, class: 'input-block-level'  %>
+        <%= select_tag :appointment_id, 
+            options_from_collection_for_select(@patient.current_and_past_appointments, 
+                :id, 
+                :summary, 
+                @progress_note.appointment_id), 
+            include_blank: true, 
+            class: 'input-block-level'  %>
       </div>
       <div class="span1 or">or</div>
       <div class="span8">

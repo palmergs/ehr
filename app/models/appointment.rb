@@ -72,12 +72,12 @@ class Appointment < ActiveRecord::Base
   end
 
   def self.find_or_create_for user, patient, id, params
-    return nil unless user and patient and params
+    return nil unless user and patient
     return nil unless user.patients.find(patient.id)
 
     if id and id.to_i > 0
       Appointment.by_patient(patient.id).by_allowed_user(user).find(id)
-    elsif params[:appointment_type] and params[:start_at_str]
+    elsif params and params[:appointment_type] and params[:start_at_str]
       a = Appointment.new
       a.appointment_type = params[:appointment_type]
       a.start_at_str = params[:start_at_str]

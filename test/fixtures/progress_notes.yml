@@ -3,6 +3,7 @@
 one:
   user: one
   patient: one
+  appointment: one
   interim_history: MyString
   medications_side_effects: MyString
   impression_diagnosis: MyString

@@ -25,10 +25,9 @@ class AppointmentsControllerTest < ActionController::TestCase
     assert_difference('Appointment.count') do
       post :create, patient_id: @patient.id, 
           appointment: { appointment_type: @appointment.appointment_type, 
-              canceled_at: @appointment.canceled_at, 
-              end_at: @appointment.end_at, 
+              end_at_str: @appointment.end_at_str, 
               notes: @appointment.notes, 
-              start_at: @appointment.start_at }
+              start_at_str: @appointment.start_at_str }
     end
 
     assert_redirected_to patient_appointment_path(@patient, assigns(:appointment))
@@ -47,10 +46,9 @@ class AppointmentsControllerTest < ActionController::TestCase
   test "should update appointment" do
     patch :update, id: @appointment, patient_id: @patient.id, 
         appointment: { appointment_type: @appointment.appointment_type, 
-            canceled_at: @appointment.canceled_at, 
-            end_at: @appointment.end_at, 
+            end_at_str: @appointment.end_at_str, 
             notes: @appointment.notes, 
-            start_at: @appointment.start_at }
+            start_at_str: @appointment.start_at_str }
     assert_redirected_to patient_appointment_path(@patient, assigns(:appointment))
   end
 

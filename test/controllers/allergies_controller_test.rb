@@ -27,7 +27,7 @@ class AllergiesControllerTest < ActionController::TestCase
           allergy: { medication_or_food: @allergy.medication_or_food, reaction: @allergy.reaction }
     end
 
-    assert_redirected_to patient_allergy_path(@patient, assigns(:allergy))
+    assert_redirected_to patient_path(@patient)
   end
 
   test "should show allergy" do
@@ -43,7 +43,7 @@ class AllergiesControllerTest < ActionController::TestCase
   test "should update allergy" do
     patch :update, id: @allergy, patient_id: @patient.id, 
         allergy: { medication_or_food: @allergy.medication_or_food, reaction: @allergy.reaction }
-    assert_redirected_to patient_allergy_path(@patient, assigns(:allergy))
+    assert_redirected_to patient_path(@patient)
   end
 
   test "should destroy allergy" do
@@ -51,6 +51,6 @@ class AllergiesControllerTest < ActionController::TestCase
       delete :destroy, id: @allergy, patient_id: @patient.id
     end
 
-    assert_redirected_to patient_allergies_path(@patient)
+    assert_redirected_to patient_path(@patient)
   end
 end

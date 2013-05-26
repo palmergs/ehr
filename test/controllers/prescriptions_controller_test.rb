@@ -30,7 +30,7 @@ class PrescriptionsControllerTest < ActionController::TestCase
               prescription: @prescription.prescription }
     end
 
-    assert_redirected_to patient_prescription_path(@patient, assigns(:prescription))
+    assert_redirected_to patient_path(@patient)
   end
 
   test "should show prescription" do
@@ -48,7 +48,7 @@ class PrescriptionsControllerTest < ActionController::TestCase
         prescription: { medication_status: @prescription.medication_status, 
             notes: @prescription.notes, 
             prescription: @prescription.prescription }
-    assert_redirected_to patient_prescription_path(@patient, assigns(:prescription))
+    assert_redirected_to patient_path(@patient)
   end
 
   test "should destroy prescription" do
@@ -56,6 +56,6 @@ class PrescriptionsControllerTest < ActionController::TestCase
       delete :destroy, id: @prescription, patient_id: @patient.id
     end
 
-    assert_redirected_to patient_prescriptions_path(@patient)
+    assert_redirected_to patient_path(@patient)
   end
 end
