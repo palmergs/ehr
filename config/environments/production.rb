@@ -66,6 +66,8 @@ Ehr::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
   
   config.action_mailer.default_url_options = { :host => 'ec2-23-21-136-195.compute-1.amazonaws.com' }
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.sendmail_settings = { :arguments => "-i" }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
