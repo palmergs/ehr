@@ -1,3 +1,3 @@
 environments:
-  stating:
+  staging:
     precompile_assets: true
