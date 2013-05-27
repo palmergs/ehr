@@ -1,69 +1,24 @@
-<h1>Listing progress_notes</h1>
+<% content_for :page_title do %>
+  <h2>Listing Progress Notes</h2>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Patient</th>
-      <th>Appointment</th>
-      <th>Interim history</th>
-      <th>Medications side effects</th>
-      <th>Impression diagnosis</th>
-      <th>Plan</th>
-      <th>Therapy type</th>
-      <th>Therapy mins</th>
-      <th>Majority counceling coord</th>
-      <th>Appearance</th>
-      <th>Behavior</th>
-      <th>Speech</th>
-      <th>Though process</th>
-      <th>Mood affect</th>
-      <th>Vital sense</th>
-      <th>Sihi</th>
-      <th>Hallucinations</th>
-      <th>Delusions</th>
-      <th>Phobias obsessions</th>
-      <th>Cognitive state</th>
-      <th>Insight judgement</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<% @presenter.each do |pn| %>
+  <h4><%= pn.patient.name %>, <%= pn.patient.long_gender %><%= ", #{ pn.patient.age } y.o." if pn.patient.age %></h4>
 
-  <tbody>
-    <% @presenter.each do |progress_note| %>
-      <tr>
-        <td><%= progress_note.user_id %></td>
-        <td><%= progress_note.patient_id %></td>
-        <td><%= progress_note.appointment_id %></td>
-        <td><%= progress_note.interim_history %></td>
-        <td><%= progress_note.medications_side_effects %></td>
-        <td><%= progress_note.impression_diagnosis %></td>
-        <td><%= progress_note.plan %></td>
-        <td><%= progress_note.therapy_type %></td>
-        <td><%= progress_note.therapy_mins %></td>
-        <td><%= progress_note.majority_counceling_coord %></td>
-        <td><%= progress_note.appearance %></td>
-        <td><%= progress_note.behavior %></td>
-        <td><%= progress_note.speech %></td>
-        <td><%= progress_note.though_process %></td>
-        <td><%= progress_note.mood_affect %></td>
-        <td><%= progress_note.vital_sense %></td>
-        <td><%= progress_note.sihi %></td>
-        <td><%= progress_note.hallucinations %></td>
-        <td><%= progress_note.delusions %></td>
-        <td><%= progress_note.phobias_obsessions %></td>
-        <td><%= progress_note.cognitive_state %></td>
-        <td><%= progress_note.insight_judgement %></td>
-        <td><%= link_to 'Show', [@patient, progress_note] %></td>
-        <td><%= link_to 'Edit', edit_patient_progress_note_path(@patient, progress_note) %></td>
-        <td><%= link_to 'Destroy', [@patient, progress_note], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <% if pn.appointment %>
+  <h5>
+    <a name="<%= pn.appointment.start_at_str %>">
+      <%= pn.appointment.start_at_str %>
+      <%= pn.appointment.appointment_type %>
+    </a>
+    <% if pn.appointment.canceled_at %>
+      <span class="label label-important">Canceled</span>
+    <% else %>
+      <% if pn.appointment.duration_mins %><%= pn.appointment.duration_min %> minutes<% end %>
     <% end %>
-  </tbody>
-</table>
+  </h5>
+  <% end %>
 
-<br>
-
-<%= link_to 'New Progress note', new_patient_progress_note_path(@patient) %>
+  <%= render partial: 'progress_notes/display', locals: { progress_note: pn } %>
+  <hr/>
+<% end %>

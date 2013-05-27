@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130524193745) do
+ActiveRecord::Schema.define(version: 20130526162225) do
 
   create_table "allergies", force: true do |t|
     t.integer  "user_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20130524193745) do
     t.datetime "start_at"
     t.datetime "end_at"
     t.datetime "canceled_at"
-    t.string   "notes"
+    t.text     "notes",            default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20130524193745) do
     t.integer  "patient_id"
     t.string   "medication_status"
     t.string   "prescription"
-    t.string   "notes"
+    t.text     "notes",             default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "appointment_id"
@@ -77,17 +77,17 @@ ActiveRecord::Schema.define(version: 20130524193745) do
     t.integer  "user_id"
     t.integer  "patient_id"
     t.integer  "appointment_id"
-    t.string   "interim_history"
-    t.string   "medications_side_effects"
-    t.string   "impression_diagnosis"
-    t.string   "plan"
+    t.text     "interim_history"
+    t.text     "medications_side_effects"
+    t.text     "impression_diagnosis"
+    t.text     "plan"
     t.string   "therapy_type"
     t.string   "therapy_mins"
     t.boolean  "majority_counceling_coord"
     t.string   "appearance"
     t.string   "behavior"
     t.string   "speech"
-    t.string   "though_process"
+    t.string   "thought_process"
     t.string   "mood_affect"
     t.string   "vital_sense"
     t.string   "sihi"

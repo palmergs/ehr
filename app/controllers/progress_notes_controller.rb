@@ -84,7 +84,7 @@ class ProgressNotesController < ApplicationController
         :appearance, 
         :behavior, 
         :speech, 
-        :though_process, 
+        :thought_process, 
         :mood_affect, 
         :vital_sense, 
         :sihi, 

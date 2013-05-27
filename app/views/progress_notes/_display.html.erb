@@ -1,0 +1,55 @@
+<% if defined? progress_note and progress_note %>
+  <label>Interim History</label>
+  <p><%= progress_note.interim_history %></p>
+
+  <label>Medications and Side Effects</label>
+  <p><%= progress_note.medications_side_effects %></p>
+
+  <label>Impression and Diagnosis</label>
+  <p><%= progress_note.impression_diagnosis %></p>
+
+  <label>Mental Status Exam</label>
+  <div class="container-fluid">
+    <div class="span6">
+      <label>Appearance</label>
+      <p><%= progress_note.appearance %></p>
+
+      <label>Behavior</label>
+      <p><%= progress_note.behavior %></p>
+
+      <label>Speech</label>
+      <p><%= progress_note.speech %></p>
+
+      <label>Thought Process</label>
+      <p><%= progress_note.thought_process %></p>
+
+      <label>Mood/Affect</label>
+      <p><%= progress_note.mood_affect %></p>
+
+      <label>Vital Sense/Self Attitude</label>
+      <p><%= progress_note.vital_sense %></p>
+    </div>
+    <div class="span6">
+      <label>SI/HI</label>
+      <p><%= progress_note.sihi %></p>
+
+      <label>Hallucinations</label>
+      <p><%= progress_note.hallucinations %></p>
+
+      <label>Delusions</label>
+      <p><%= progress_note.delusions %></p>
+
+      <label>Phobias/Obsessions</label>
+      <p><%= progress_note.phobias_obsessions %></p>
+
+      <label>Cognitive State</label>
+      <p><%= progress_note.cognitive_state %></p>
+
+      <label>Insight/Judgement</label>
+      <p><%= progress_note.insight_judgement %></p>
+    </div>
+  </div>
+
+  <label>Plan</label>
+  <p><%= progress_note.plan %></p>
+<% end %>

@@ -42,7 +42,7 @@ class ProgressNotesControllerTest < ActionController::TestCase
               speech: @progress_note.speech, 
               therapy_mins: @progress_note.therapy_mins, 
               therapy_type: @progress_note.therapy_type, 
-              though_process: @progress_note.though_process, 
+              thought_process: @progress_note.thought_process, 
               vital_sense: @progress_note.vital_sense }
     end
 
@@ -78,7 +78,7 @@ class ProgressNotesControllerTest < ActionController::TestCase
             speech: @progress_note.speech, 
             therapy_mins: @progress_note.therapy_mins, 
             therapy_type: @progress_note.therapy_type, 
-            though_process: @progress_note.though_process, 
+            thought_process: @progress_note.thought_process, 
             vital_sense: @progress_note.vital_sense }
     assert_redirected_to patient_progress_note_path(@patient, assigns(:progress_note))
   end

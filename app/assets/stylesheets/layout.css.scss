@@ -55,3 +55,14 @@
   }
 }
 
+@media (max-width: 639px) {
+  .with-left {
+    margin-left: 0;
+  }
+  #left-col {
+    float: none;
+    width: auto;
+    border: none;
+    padding: 0 0 4px 0;
+  }
+}

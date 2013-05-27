@@ -14,7 +14,7 @@ one:
   appearance: MyString
   behavior: MyString
   speech: MyString
-  though_process: MyString
+  thought_process: MyString
   mood_affect: MyString
   vital_sense: MyString
   sihi: MyString
@@ -38,7 +38,7 @@ two:
   appearance: MyString
   behavior: MyString
   speech: MyString
-  though_process: MyString
+  thought_process: MyString
   mood_affect: MyString
   vital_sense: MyString
   sihi: MyString
