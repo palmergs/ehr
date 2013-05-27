@@ -1,1 +1,3 @@
-precompile_assets: true
+environments:
+  stating:
+    precompile_assets: true
