@@ -7,14 +7,14 @@ module ScopedSearch
   end
 
   def allowed_user_lambda
-    -> (user) {
+    ->(user) {
       joins(inner_join_relations).
           where('patient_doctor_relations.user_id = ?', user.id)
     }
   end
 
   def date_range_lambda
-    -> (stdt, endt, field = :created_at) {
+    ->(stdt, endt, field = :created_at) {
       if stdt.present? and endt.present?
         where('? between ? and ?', field, stdt, endt)
       elsif stdt.present?
@@ -26,7 +26,7 @@ module ScopedSearch
   end
 
   def fields_like_lambda
-    -> (q, fields) {
+    ->(q, fields) {
       if q.present?
         term = "%#{ q }%"
         query = Array(fields).map do |f|

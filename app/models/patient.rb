@@ -16,11 +16,11 @@ class Patient < ActiveRecord::Base
 
   validates :ident, :status, presence: true
 
-  scope :by_id, -> (id) { where(id: id.to_i) if id and id.to_i > 0 }
-  scope :by_ident, -> (ident) { where(ident: ident.to_s) if ident.present? }
-  scope :by_dob, -> (stdt, endt) { date_range_lambda.call(stdt, endt, :dob) }
-  scope :by_created_at, -> (stdt, endt) { date_range_lambda.call(stdt, endt) }
-  scope :by_search, -> (q) { fields_like_lambda.call(q, [:fname, :lname, :mname]) }
+  scope :by_id, ->(id) { where(id: id.to_i) if id and id.to_i > 0 }
+  scope :by_ident, ->(ident) { where(ident: ident.to_s) if ident.present? }
+  scope :by_dob, ->(stdt, endt) { date_range_lambda.call(stdt, endt, :dob) }
+  scope :by_created_at, ->(stdt, endt) { date_range_lambda.call(stdt, endt) }
+  scope :by_search, ->(q) { fields_like_lambda.call(q, [:fname, :lname, :mname]) }
 
   def name
     [ fname, mname, lname ].reject(&:blank?).join(' ')
