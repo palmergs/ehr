@@ -7,10 +7,10 @@
   <div class="action-block">
     <%= link_to 'Add Appointment to Calendar', new_patient_appointment_path(@patient), class: 'med-icon-link med-calendar'  %>
     <%= link_to 'Enter New Progress Note', 
-        new_patient_progress_note_path(@patient, appointment_id: @appointment.id), 
+        new_patient_appointment_progress_note_path(@patient, @appointment), 
         class: 'med-icon-link med-note' %>
     <%= link_to 'Record Medication Change', 
-        new_patient_prescription_path(@patient, appointment_id: @appointment.id), 
+        new_patient_appointment_prescription_path(@patient, @appointment), 
         class: 'med-icon-link med-prescription' %>
     <%= link_to 'Enter New Allergy', new_patient_allergy_path(@patient), class: 'med-icon-link med-allergy' %>
   </div>

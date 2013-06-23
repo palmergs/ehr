@@ -8,16 +8,19 @@ class PrescriptionsControllerTest < ActionController::TestCase
     sign_in @user
     @prescription = prescriptions(:one)
     @patient = patients(:one)
+    @appointment = appointments(:one)
   end
 
   test "should get index" do
-    get :index, patient_id: @patient.id
+    get :index, patient_id: @patient.id, 
+        appointment_id: @appointment.id
     assert_response :success
     assert_not_nil assigns(:presenter)
   end
 
   test "should get new" do
-    get :new, patient_id: @patient.id
+    get :new, patient_id: @patient.id, 
+        appointment_id: @appointment.id
     assert_response :success
   end
 
@@ -25,6 +28,7 @@ class PrescriptionsControllerTest < ActionController::TestCase
     assert_difference('Prescription.count') do
       post :create, 
           patient_id: @patient.id,
+          appointment_id: @appointment.id,
           prescription: { medication_status: @prescription.medication_status, 
               notes: @prescription.notes, 
               prescription: @prescription.prescription }
@@ -34,17 +38,23 @@ class PrescriptionsControllerTest < ActionController::TestCase
   end
 
   test "should show prescription" do
-    get :show, id: @prescription, patient_id: @patient.id
+    get :show, id: @prescription, 
+        patient_id: @patient.id,
+        appointment_id: @appointment.id
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @prescription, patient_id: @patient.id
+    get :edit, id: @prescription, 
+        patient_id: @patient.id,
+        appointment_id: @appointment.id
     assert_response :success
   end
 
   test "should update prescription" do
-    patch :update, id: @prescription, patient_id: @patient.id,
+    patch :update, id: @prescription, 
+        patient_id: @patient.id,
+        appointment_id: @appointment.id,
         prescription: { medication_status: @prescription.medication_status, 
             notes: @prescription.notes, 
             prescription: @prescription.prescription }
@@ -53,7 +63,9 @@ class PrescriptionsControllerTest < ActionController::TestCase
 
   test "should destroy prescription" do
     assert_difference('Prescription.count', -1) do
-      delete :destroy, id: @prescription, patient_id: @patient.id
+      delete :destroy, id: @prescription, 
+          patient_id: @patient.id.
+          appointment_id: @appointment.id
     end
 
     assert_redirected_to patient_path(@patient)

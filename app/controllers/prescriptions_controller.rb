@@ -4,6 +4,7 @@ class PrescriptionsController < ApplicationController
   before_action :set_prescription, only: [:show]
   before_action :set_writable_prescription, only: [:edit, :update, :destroy]
   before_action :set_patient
+  before_action :set_appointment
 
   def index
     @presenter = PrescriptionsPresenter.new(current_user, params)
@@ -34,11 +35,15 @@ class PrescriptionsController < ApplicationController
 
     respond_to do |format|
       if @prescription.save
-        format.html { redirect_to @patient, notice: 'Prescription was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @prescription }
+        format.html { redirect_to @patient, 
+          notice: 'Prescription was successfully created.' }
+        format.json { render action: 'show', 
+          status: :created, 
+          location: @prescription }
       else
         format.html { render action: 'new' }
-        format.json { render json: @prescription.errors, status: :unprocessable_entity }
+        format.json { render json: @prescription.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -46,11 +51,13 @@ class PrescriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @prescription.update(prescription_params)
-        format.html { redirect_to @patient, notice: 'Prescription was successfully updated.' }
+        format.html { redirect_to @patient, 
+          notice: 'Prescription was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @prescription.errors, status: :unprocessable_entity }
+        format.json { render json: @prescription.errors, 
+          status: :unprocessable_entity }
       end
     end
   end

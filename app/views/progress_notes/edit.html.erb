@@ -2,7 +2,8 @@
   <h2>Edit Progress Note for <%= @patient.ident %></h2>
 <% end %>
 
-<%= form_for([@patient, @progress_note], html: { class: 'form-horizontal' }) do |f| %>
+<%= form_for([@patient, @appointment, @progress_note], 
+             html: { class: 'form-horizontal' }) do |f| %>
   <%= errors_in @progress_note %>
   <%= render partial: 'progress_notes/form', locals: { f: f }  %>
   <hr/>

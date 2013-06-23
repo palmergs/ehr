@@ -50,17 +50,23 @@ class ProgressNotesControllerTest < ActionController::TestCase
   end
 
   test "should show progress_note" do
-    get :show, id: @progress_note, patient_id: @patient.id
+    get :show, id: @progress_note, 
+        patient_id: @patient.id, 
+        appointment_id: @appointment.id
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @progress_note, patient_id: @patient.id
+    get :edit, id: @progress_note, 
+        patient_id: @patient.id, 
+        appointment_id: @appointment.id
     assert_response :success
   end
 
   test "should update progress_note" do
-    patch :update, patient_id: @patient.id, id: @progress_note, appointment_id: @appointment.id,
+    patch :update, patient_id: @patient.id, 
+        id: @progress_note, 
+        appointment_id: @appointment.id,
         progress_note: { appearance: @progress_note.appearance, 
             behavior: @progress_note.behavior, 
             cognitive_state: @progress_note.cognitive_state, 
@@ -85,7 +91,9 @@ class ProgressNotesControllerTest < ActionController::TestCase
 
   test "should destroy progress_note" do
     assert_difference('ProgressNote.count', -1) do
-      delete :destroy, id: @progress_note, patient_id: @patient.id
+      delete :destroy, id: @progress_note, 
+          patient_id: @patient.id, 
+          appointment_id: @appointment.id
     end
 
     assert_redirected_to patient_path(@patient)

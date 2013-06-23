@@ -2,6 +2,7 @@ class ProgressNotesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_patient
+  before_action :set_appointment
   before_action :set_progress_note, only: [:show]
   before_action :set_writable_progress_note, only: [:edit, :update, :destroy]
 
