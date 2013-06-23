@@ -28,4 +28,10 @@ module ApplicationHelper
   def date_input form, field, options = HashWithIndifferentAccess.new
     render partial: 'layouts/date_input', locals: { f: form, field: field, options: options }
   end
+
+  def on_dt datetime
+    if datetime
+      datetime.strftime("%l:%M, %m/%d/%Y")
+    end
+  end
 end

@@ -23,10 +23,6 @@ class PrescriptionsController < ApplicationController
   end
 
   def create
-    @appointment = Appointment.find_or_create_for(current_user, 
-        @patient, 
-        params[:prescription][:appointment_id], 
-        params[:appointment])
 
     @prescription = Prescription.new(prescription_params)
     @prescription.patient = @patient
