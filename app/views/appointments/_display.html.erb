@@ -1,9 +1,10 @@
 <% if defined? appointment and appointment %>
   <h4>
-    <a name="<%= appointment.start_at_str %>">
-      <%= appointment.start_at_str %>
-      <%= appointment.appointment_type %>
-    </a>
+    <%= link_to "#{ appointment.start_at_str } #{ appointment.appointment_type }",
+        [@patient, appointment], 
+        name: appointment.start_at_str, 
+        title: 'View appointment details.',
+        alt: 'View appointment details.' %>
     <% if appointment.canceled_at %>
       <span class="label label-important">Canceled</span>
     <% else %>
