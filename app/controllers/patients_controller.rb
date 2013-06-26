@@ -12,6 +12,27 @@ class PatientsController < ApplicationController
     end
   end
 
+  def ethnicities
+    @presenter = PatientsPresenter.new(current_user, params)
+    render json: {
+      options: @presenter.ethnicities
+    }
+  end
+
+  def occupations
+    @presenter = PatientsPresenter.new(current_user, params)
+    render json: {
+      options: @presenter.occupations
+    }
+  end
+
+  def marital_statuses
+    @presenter = PatientsPresenter.new(current_user, params)
+    render json: {
+      options: @presenter.marital_statuses
+    }
+  end
+
   def show
     @patient = PatientPresenter.new(current_user, @patient)
     respond_to do |format|

@@ -7,6 +7,11 @@ Ehr::Application.routes.draw do
       resources :prescriptions
     end
     resources :patient_doctor_relations
+    collection do 
+      get 'ethnicities', format: :json
+      get 'occupations', format: :json
+      get 'marital_statuses', format: :json
+    end
   end
 
   resources :calendars

@@ -41,18 +41,51 @@
   <div class="control-group">
     <%= f.label :marital_status, 'Marital Status', class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :marital_status, class: 'span4' %>
+      <%= f.text_field :marital_status, class: 'span4', autocomplete: 'off' %>
     </div>
+    <%= javascript_tag do %>
+      $(function() {
+        $('#patient_marital_status').typeahead({
+          source: function(query, process) {
+            return $.get('<%= marital_statuses_patients_path %>', { query: query }, function(data) {
+              return process(data.options)
+            });
+          }
+        });
+      });
+    <% end %>
   </div>
   <div class="control-group">
     <%= f.label :ethnicity, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :ethnicity, class: 'span4' %>
+      <%= f.text_field :ethnicity, autocomplete: 'off', class: 'span4' %>
     </div>
+    <%= javascript_tag do %>
+      $(function() {
+        $('#patient_ethnicity').typeahead({
+          source: function(query, process) {
+            return $.get('<%= ethnicities_patients_path %>', { query: query }, function(data) {
+              return process(data.options)
+            });
+          }
+        });
+      });
+    <% end %>
   </div>
   <div class="control-group">
     <%= f.label :occupation, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :occupation, class: 'span4' %>
+      <%= f.text_field :occupation, class: 'span4', autocomplete: 'off' %>
     </div>
+    <%= javascript_tag do %>
+      $(function() {
+        $('#patient_occupation').typeahead({
+          source: function(query, process) {
+            return $.get('<%= occupations_patients_path %>', { query: query }, function(data) {
+              return process(data.options)
+            });
+          }
+        });
+      });
+    <% end %>
   </div>
