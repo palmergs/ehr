@@ -12,6 +12,6 @@ class PatientTest < ActiveSupport::TestCase
   end
 
   test 'it knows the next appointment' do
-    assert_nil Patient.new.next_appointment
+    assert_empty Patient.new.next_appointment
   end
 end

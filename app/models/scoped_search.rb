@@ -16,7 +16,7 @@ module ScopedSearch
   def date_range_lambda
     ->(stdt, endt, field = :created_at) {
       if stdt.present? and endt.present?
-        where('? between ? and ?', field, stdt, endt)
+        where(field.to_sym => (stdt..endt))
       elsif stdt.present?
         where('? >= ?', field, stdt)
       elsif endt.present?

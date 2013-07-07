@@ -64,7 +64,7 @@ class PrescriptionsControllerTest < ActionController::TestCase
   test "should destroy prescription" do
     assert_difference('Prescription.count', -1) do
       delete :destroy, id: @prescription, 
-          patient_id: @patient.id.
+          patient_id: @patient.id,
           appointment_id: @appointment.id
     end
 

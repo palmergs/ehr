@@ -11,9 +11,9 @@
     <div class="controls">
       <%= f.submit %>
       <%= link_to 'Show', 
-          [@prescription.patient, @prescription.appointment, @prescription] %> |
+          [@patient, @appointment, @prescription] %> |
       <%= link_to 'Back', 
-          patient_appointments_prescriptions_path(@patient, @appointment) %>
+          patient_appointment_prescriptions_path(@patient, @appointment) %>
     </div>
   </div>
 <% end %>

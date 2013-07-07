@@ -47,8 +47,8 @@ class Patient < ActiveRecord::Base
     self.appointments.occurred_before.order('start_at desc')
   end
 
-  def next_appointment
-    self.appointments.scheduled_after.not_canceled.order('start_at asc').first
+  def next_appointment limit = 1
+    self.appointments.scheduled_after.not_canceled.order('start_at asc').limit(limit)
   end
 
   def dob_str= str

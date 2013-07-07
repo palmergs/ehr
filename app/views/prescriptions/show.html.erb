@@ -25,5 +25,5 @@
   <%= @prescription.notes %>
 </p>
 
-<%= link_to 'Edit', edit_patient_prescription_path(@patient, @prescription) %> |
-<%= link_to 'Back', patient_prescriptions_path(@patient)  %>
+<%= link_to 'Edit', edit_patient_appointment_prescription_path(@patient, @appointment, @prescription) %> |
+<%= link_to 'Back', patient_appointment_prescriptions_path(@patient, @appointment)  %>

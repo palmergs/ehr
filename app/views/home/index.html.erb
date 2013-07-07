@@ -1,2 +1,65 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<% content_for :page_title do %>
+  <h2><%= DateTime.now.strftime('%l:%M %P, %B %-d, %Y') %></h2>
+<% end %>
+
+<% content_for :actions do %>
+  <div class="action-block">
+    <%= link_to 'Add New Patient', new_patient_path, class: 'med-icon-link med-patient' %>
+  </div>
+<% end %>
+
+<% content_for :quick_look do %>
+  <div class="module-block">
+    <h5>Upcoming</h5>
+    <% hash = current_user.appointments_by_hour %>
+    <% if hash.count > 0 %>
+      <%= hash.each_pair do |time_str, appts| %>
+        <h6><%= time_str %></h6>
+        <% if appts.count > 0 %>
+          <ul>
+          <% appts.each do |appt| %>
+            <li><%= appt %></li>
+          <% end %>
+          </ul>
+        <% end %>
+      <% end %>
+    <% else %>
+      <h6>Today</h6>
+      <p>No appointments scheduled.</p>
+    <% end %>
+
+    <% current_user.appointments_by_date(
+        DateTime.tomorrow.beginning_of_day, 
+        5.days.from_now.end_of_day).each_pair do |date, appts| %>
+      <h6><%= date.strftime('%a, %b %-e') %></h6>
+      <% if appts.count > 0 %>
+        <ul>
+          <% appts.each do |appt| %>
+            <li><%= appt %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No appointments scheduled.</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="module-block">
+    <h5>Recent</h5>
+    <% current_user.appointments_by_date(
+        5.days.ago.beginning_of_day, 
+        DateTime.now, 
+        :desc).to_a.reverse.each do |arr| %>
+      <h6><%= arr[0].strftime('%a, %b %-e') %></h6>
+      <% if arr[1].count > 0 %>
+        <ul>
+          <% arr[1].each do |appt| %>
+            <li><%= appt %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No appointments occurred.</p>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

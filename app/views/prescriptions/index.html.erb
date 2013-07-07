@@ -22,9 +22,9 @@
         <td><%= prescription.medication_status %></td>
         <td><%= prescription.prescription %></td>
         <td><%= prescription.notes %></td>
-        <td><%= link_to 'Show', [@patient, prescription] %></td>
-        <td><%= link_to 'Edit', edit_patient_prescription_path(@patient, prescription) %></td>
-        <td><%= link_to 'Destroy', [@patient, prescription], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [@patient, @appointment, prescription] %></td>
+        <td><%= link_to 'Edit', edit_patient_appointment_prescription_path(@patient, @appointment, prescription) %></td>
+        <td><%= link_to 'Destroy', [@patient, @appointment, prescription], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Prescription', new_patient_prescription_path(@patient) %>
+<%= link_to 'New Prescription', new_patient_appointment_prescription_path(@patient, @appointment) %>

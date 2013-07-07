@@ -12,13 +12,13 @@ class ProgressNotesControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    get :index, patient_id: @patient.id
+    get :index, patient_id: @patient.id, appointment_id: @appointment.id
     assert_response :success
     assert_not_nil assigns(:presenter)
   end
 
   test "should get new" do
-    get :new, patient_id: @patient.id
+    get :new, patient_id: @patient.id, appointment_id: @appointment.id
     assert_response :success
   end
 
@@ -46,7 +46,7 @@ class ProgressNotesControllerTest < ActionController::TestCase
               vital_sense: @progress_note.vital_sense }
     end
 
-    assert_redirected_to patient_progress_note_path(@patient, assigns(:progress_note))
+    assert_redirected_to patient_appointment_progress_note_path(@patient, @appointment, assigns(:progress_note))
   end
 
   test "should show progress_note" do
@@ -86,7 +86,7 @@ class ProgressNotesControllerTest < ActionController::TestCase
             therapy_type: @progress_note.therapy_type, 
             thought_process: @progress_note.thought_process, 
             vital_sense: @progress_note.vital_sense }
-    assert_redirected_to patient_progress_note_path(@patient, assigns(:progress_note))
+    assert_redirected_to patient_appointment_progress_note_path(@patient, @appointment, assigns(:progress_note))
   end
 
   test "should destroy progress_note" do
