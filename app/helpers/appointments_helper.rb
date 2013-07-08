@@ -15,4 +15,18 @@ module AppointmentsHelper
       end
     end
   end
+
+  def appt_in_sidebar a
+    if a
+      p = a.patient
+      [
+        link_to("#{ a.start_at.strftime('%l:%M %P') }", [p, a]),
+        " &ndash; ",
+        link_to(p.ident, p),
+        ' (',
+        link_to(a.appointment_type, [p, a]),
+        ')'
+      ].join.html_safe
+    end
+  end
 end
