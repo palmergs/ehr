@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @initial_evaluation.user_id %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @initial_evaluation.patient_id %>
+</p>
+
+<p>
+  <strong>Appointment:</strong>
+  <%= @initial_evaluation.appointment_id %>
+</p>
+
+<p>
+  <strong>Id cc:</strong>
+  <%= @initial_evaluation.id_cc %>
+</p>
+
+<p>
+  <strong>Hpi:</strong>
+  <%= @initial_evaluation.hpi %>
+</p>
+
+<p>
+  <strong>Mental status exam:</strong>
+  <%= @initial_evaluation.mental_status_exam %>
+</p>
+
+<p>
+  <strong>Formulation:</strong>
+  <%= @initial_evaluation.formulation %>
+</p>
+
+<p>
+  <strong>Recommendation:</strong>
+  <%= @initial_evaluation.recommendation %>
+</p>
+
+<%= link_to 'Edit', edit_initial_evaluation_path(@initial_evaluation) %> |
+<%= link_to 'Back', initial_evaluations_path %>

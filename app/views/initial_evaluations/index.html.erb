@@ -1,0 +1,41 @@
+<h1>Listing initial_evaluations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Patient</th>
+      <th>Appointment</th>
+      <th>Id cc</th>
+      <th>Hpi</th>
+      <th>Mental status exam</th>
+      <th>Formulation</th>
+      <th>Recommendation</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @initial_evaluations.each do |initial_evaluation| %>
+      <tr>
+        <td><%= initial_evaluation.user_id %></td>
+        <td><%= initial_evaluation.patient_id %></td>
+        <td><%= initial_evaluation.appointment_id %></td>
+        <td><%= initial_evaluation.id_cc %></td>
+        <td><%= initial_evaluation.hpi %></td>
+        <td><%= initial_evaluation.mental_status_exam %></td>
+        <td><%= initial_evaluation.formulation %></td>
+        <td><%= initial_evaluation.recommendation %></td>
+        <td><%= link_to 'Show', initial_evaluation %></td>
+        <td><%= link_to 'Edit', edit_initial_evaluation_path(initial_evaluation) %></td>
+        <td><%= link_to 'Destroy', initial_evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Initial evaluation', new_initial_evaluation_path %>
