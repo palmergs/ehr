@@ -13,6 +13,7 @@ class Patient < ActiveRecord::Base
   has_many :prescriptions,            dependent: :destroy
   has_many :appointments,             dependent: :destroy
   has_many :progress_notes,           dependent: :destroy
+  has_many :initial_evaluations,      dependent: :destroy
 
   validates :ident, :status, presence: true
 

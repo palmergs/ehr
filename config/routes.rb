@@ -4,7 +4,12 @@ Ehr::Application.routes.draw do
     resources :allergies
     resources :appointments do
       resources :progress_notes
+      resources :initial_evaluations
       resources :prescriptions
+      member do
+        get 'cancel'
+        get 'uncancel'
+      end
     end
     resources :patient_doctor_relations
     collection do 

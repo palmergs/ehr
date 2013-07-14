@@ -46,6 +46,20 @@ a.med-mental-status {
   background-image: url('DefinedParameters.png');
 }
 
+.title-actions {
+  display: block;
+  float: right;
+  min-width: 90px;
+  min-height: 18px;
+  a.bullet-icon {
+    float: right;
+    padding-right: 3px;
+    width: 0px;
+    overflow: hidden;
+    text-indent: -9000px;
+  }
+}
+
 .bullet-icon {
   display: block;
   padding-left: 20px;
@@ -109,4 +123,24 @@ a.med-mental-status {
 
 .prescription-Unknown {
   @extend .bullet-icon;
+}
+
+.bullet-edit {
+  @extend .bullet-icon;
+  background-image: url('silk/edit.png');
+}
+
+.bullet-cancel {
+  @extend .bullet-icon;
+  background-image: url('silk/cancel.png');
+}
+
+.bullet-uncancel {
+  @extend .bullet-icon;
+  background-image: url('silk/uncancel.png');
+}
+
+.bullet-rx {
+  @extend .bullet-icon;
+  background-image: url('silk/pill.png'); 
 }

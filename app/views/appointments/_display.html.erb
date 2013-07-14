@@ -1,5 +1,31 @@
 <% if defined? appointment and appointment %>
   <h4>
+    <span class="title-actions">
+      <% if appointment.appointment_type == AppointmentType::INITIAL_EVALUATION %>
+        <%= link_to 'Edit Initial Evaluation', 
+            new_patient_appointment_initial_evaluation_path(@patient, appointment), 
+            class: 'bullet-icon bullet-edit' %>
+      <% else %>
+        <%= link_to 'Edit Progress Note', 
+            new_patient_appointment_progress_note_path(@patient, appointment),
+            class: 'bullet-icon bullet-edit' %>
+      <% end %>
+      <% if appointment.canceled_at.nil? %>
+        <%= link_to 'Cancel Appointment?',
+            cancel_patient_appointment_path(@patient, appointment),
+            class: 'bullet-icon bullet-cancel',
+            confirm: 'Are you sure you want to cancel this appointment?' %>
+      <% else %>
+        <%= link_to 'Un-cancel Appointment?',
+            uncancel_patient_appointment_path(@patient, appointment),
+            class: 'bullet-icon bullet-uncancel', 
+            confirm: 'Are you sure you want to uncancel this appointment?' %>
+      <% end %>
+      <%= link_to 'Record Medication Change', 
+          new_patient_appointment_prescription_path(@patient, appointment),
+          class: 'bullet-icon bullet-rx' %>
+    </span>
+
     <%= link_to "#{ appointment.start_at_str } #{ appointment.appointment_type }",
         [@patient, appointment], 
         name: appointment.start_at_str, 
@@ -25,8 +51,8 @@
       <p class="text-info">No medication changes recorded.</p>
     <% end %>
 
-    <% appointment.progress_notes.each do |pn| %>
-      <%= render partial: 'progress_notes/display', locals: { progress_note: pn } %>
+    <% if appointment.progress_note %>
+      <%= render partial: 'progress_notes/display', locals: { progress_note: appointment.progress_note } %>
     <% end %>
   <% end %>
 <% end %>

@@ -5,7 +5,8 @@ class Appointment < ActiveRecord::Base
   belongs_to :user
   belongs_to :patient
 
-  has_many :progress_notes
+  has_one  :progress_note
+  has_one  :initial_evaluation
   has_many :prescriptions
   has_many :allergies
 

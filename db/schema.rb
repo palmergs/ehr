@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130526162225) do
+ActiveRecord::Schema.define(version: 20130714190644) do
 
   create_table "allergies", force: true do |t|
     t.integer  "user_id"
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(version: 20130526162225) do
     t.datetime "end_at"
     t.datetime "canceled_at"
     t.text     "notes",            default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "initial_evaluations", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "patient_id"
+    t.integer  "appointment_id"
+    t.string   "id_cc"
+    t.string   "hpi"
+    t.string   "mental_status_exam"
+    t.string   "formulation"
+    t.string   "recommendation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

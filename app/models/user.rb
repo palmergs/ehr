@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   # Entered by this user 
   has_many :progress_notes
+  has_many :initial_evaluations
   has_many :prescriptions
   has_many :appointments
   has_many :allergies

@@ -14,20 +14,21 @@ class ProgressNotesController < ApplicationController
   end
 
   def new
-    @progress_note = ProgressNote.new
-    @progress_note.user = current_user
-    @progress_note.patient = @patient
+    @progress_note = @appointment.progress_note
+    if @progress_note
+      redirect_to edit_patient_appointment_progress_note_path(@patient, @appointment, @progress_note)
+    else 
+      @progress_note = ProgressNote.new
+      @progress_note.user = current_user
+      @progress_note.patient = @patient
+      @progress_note.appointment = @appointment
+    end
   end
 
   def edit
   end
 
   def create
-    @appointment = Appointment.find_or_create_for(current_user, 
-        @patient, 
-        params[:appointment_id], 
-        params[:appointment])
-
     @progress_note = ProgressNote.new(progress_note_params)
     @progress_note.user = current_user
     @progress_note.patient = @patient

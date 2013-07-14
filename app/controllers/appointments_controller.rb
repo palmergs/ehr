@@ -7,6 +7,10 @@ class AppointmentsController < ApplicationController
 
   def index
     @presenter = AppointmentsPresenter.new(current_user, params)
+    respond_to do |format|
+      format.html
+      format.json { render json: @presenter.to_json }
+    end
   end
 
   def show
@@ -46,6 +50,24 @@ class AppointmentsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def cancel
+    @appointment.canceled_at = DateTime.now
+    @appointment.save!
+    respond_to do |format|
+      format.html { redirect_to patient_appointments_url(@patient), notice: 'Appointment was canceled.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def uncancel
+    @appointment.canceled_at = nil
+    @appointment.save!
+    respond_to do |format|
+      format.html { redirect_to patient_appointments_url(@patient), notice: 'Appointment was un-canceled.' }
+      format.json { head :no_content }
     end
   end
 

@@ -1,13 +1,13 @@
 body {
   background-color: #fff;
   color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: Georgia, Times New Roman, Times, serif;
   font-size: 13px;
   line-height: 18px;
 }
 
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+p, ol, ul, td, input[type=text], textarea, select, option {
+  font-family: Georgia, Times New Roman, Times, serif;
   font-size: 13px;
   line-height: 18px;
 }
