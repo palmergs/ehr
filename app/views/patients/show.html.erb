@@ -12,6 +12,17 @@
 <% content_for :quick_look do %>
   <div class="module-block">
     <div id="calendar"></div>
+    <%= javascript_tag do %>
+      $(document).ready(function() {    
+        $.get('<%= patient_appointments_path(@patient) %>', {}, function(data) {
+          var today = new Date();
+          var dt = new Date(today.getFullYear(), 
+              today.getMonth() - 2, 
+              today.getDate());
+          calendarViz.buildMonth(dt, data);
+        }, 'json');
+      });
+    <% end %>
   </div>
   <div class="module-block">
     <h5>Allergies</h5>

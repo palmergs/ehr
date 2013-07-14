@@ -17,4 +17,17 @@ class AppointmentsPresenter < CollectionPresenter
   def default_sort_dir
     :desc
   end
+
+  def to_json
+    now = Time.now
+    hash = @collection.inject({}) do |hash, appt|
+      hash[appt.date_str] = { 
+          type: appt.appointment_type, 
+          status: (appt.canceled_at.nil? ? 
+              (now < appt.start_at ? 'Pending' : 'Occurred') : 
+              'Canceled') }
+      hash
+    end
+    hash.to_json
+  end
 end

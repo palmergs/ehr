@@ -1,5 +1,6 @@
+var calendarVis = null;
 $(document).ready(function() {
-  var calendarViz = {
+  calendarViz = {
     percent:      d3.format(".1%"),
     weekday:      function(dt) { return parseInt(d3.time.format("%w")(dt)); },
     dayInMonth:   function(dt) { return parseInt(d3.time.format("%d")(dt)); },
@@ -14,16 +15,17 @@ $(document).ready(function() {
     dayOfWeekAbbr: function(dt) { return parseInt(d3.time.format("%a")(dt)); },
     monthName:    d3.time.format("%B"),
     monthInYear:  function(dt) { return parseInt(d3.time.format("%m")(dt)) - 1; },
-    dateFormat:   d3.time.format("%Y-%m-%d"),
+    dateFormat:   d3.time.format("%m/%d/%Y"),
     cellSize:     8,
     gutterWidth:  6,
     numMonths:    4,
-    buildMonth:   function(date) {
+    buildMonth:   function(date, json) {
                     var _self = this;
+                    console.log(json);
                     
                     var color = d3.scale.quantize()
-                        .domain([-0.05, .05])
-                        .range(d3.range(11).map(function(n) { return "q"+ n +"-11"; }));
+                        .domain(['Occurred', 'Pending', 'Canceled', null])
+                        .range(['status-occurred', 'status-pending', 'status-canceled', 'status-unknown']);
 
                     var svg = d3.select("#calendar").selectAll("svg")
                         .data(d3.range(date.getMonth(), date.getMonth() + this.numMonths))
@@ -57,7 +59,13 @@ $(document).ready(function() {
                           return d3.time.days(start, end);
                         })
                         .enter().append("rect")
-                            .attr("class", "day")
+                            .attr("class", function(d) { 
+                              var clazz = "day"
+                              if(json[d] != undefined) {
+                                clazz = clazz +" "+ color(json[d].status);
+                              }
+                              return clazz; 
+                            })
                             .attr("width", this.cellSize)
                             .attr("height", this.cellSize)
                             .attr("x", function(d) { 
@@ -72,36 +80,19 @@ $(document).ready(function() {
                             .datum(this.dateFormat);
 
                     rect.append("title").text(function(d) { return d; });
-
-                    var data = { 
-                        '2013-05-14': { type: 'Initial Evaluation' },
-                        '2013-05-28': { type: 'Appointment' },
-                        '2013-06-05': { type: 'Appointment', status: 'Canceled' },
-                        '2013-06-07': { type: 'Phone Appointment' },
-                        '2013-06-19': { type: 'Appointment' },
-                        '2013-07-03': { type: 'Appointment' },
-                        '2013-07-17': { type: 'Appointment', status: 'Pending' },
-                        '2013-07-31': { type: 'Appointment', status: 'Pending' }
-                    };
-//                      d3.csv(dataPath, function(error, csv) {
-//                        var data = d3.nest()
-//                            .key(function(d) { return d.Date; })
-//                            .rollup(function(d) {
-//                              return (d[0].Close - d[0].Open) / d[0].Open;
-//                            })
-//                            .map(csv);
-//
-                     rect.filter(function(d) { return d in data; })
-                         .attr("class", function(d) { return "day "+ color(data[d]); })
-                         .select("title")
-                         .text(function(d) { return d +": "+ _self.percent(data[d]); });
-//                      });
+                    rect.filter(function(d) { 
+                         return d in json; 
+                       })
+                       .attr("class", function(d) { 
+                         return "day day-"+ json[d].status; 
+                       })
+                       .select("title")
+                       .text(function(d) { 
+                         return d +": "+ json[d].type; 
+                       });
                   },
     version:      '0.0.1'
   };
 
-  var today = new Date();
-  var dt = new Date(today.getFullYear(), today.getMonth() - 2, today.getDate());
-  calendarViz.buildMonth(dt);
 });
 
