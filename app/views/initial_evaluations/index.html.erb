@@ -1,41 +1,24 @@
-<h1>Listing initial_evaluations</h1>
+<% content_for :page_title do %>
+  <h2>Listing Initial Evaluations</h2>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Patient</th>
-      <th>Appointment</th>
-      <th>Id cc</th>
-      <th>Hpi</th>
-      <th>Mental status exam</th>
-      <th>Formulation</th>
-      <th>Recommendation</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<% @presenter.each do |ie| %>
+  <h4><%= ie.patient.name %>, <%= ie.patient.long_gender %><%= ", #{ ie.patient.age } y.o." if ie.patient.age %></h4>
 
-  <tbody>
-    <% @initial_evaluations.each do |initial_evaluation| %>
-      <tr>
-        <td><%= initial_evaluation.user_id %></td>
-        <td><%= initial_evaluation.patient_id %></td>
-        <td><%= initial_evaluation.appointment_id %></td>
-        <td><%= initial_evaluation.id_cc %></td>
-        <td><%= initial_evaluation.hpi %></td>
-        <td><%= initial_evaluation.mental_status_exam %></td>
-        <td><%= initial_evaluation.formulation %></td>
-        <td><%= initial_evaluation.recommendation %></td>
-        <td><%= link_to 'Show', initial_evaluation %></td>
-        <td><%= link_to 'Edit', edit_initial_evaluation_path(initial_evaluation) %></td>
-        <td><%= link_to 'Destroy', initial_evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <% if ie.appointment %>
+  <h5>
+    <a name="<%= ie.appointment.start_at_str %>">
+      <%= ie.appointment.start_at_str %>
+      <%= ie.appointment.appointment_type %>
+    </a>
+    <% if ie.appointment.canceled_at %>
+      <span class="label label-important">Canceled</span>
+    <% else %>
+      <% if ie.appointment.duration_mins %><%= ie.appointment.duration_min %> minutes<% end %>
     <% end %>
-  </tbody>
-</table>
+  </h5>
+  <% end %>
 
-<br>
-
-<%= link_to 'New Initial evaluation', new_initial_evaluation_path %>
+  <%= render partial: 'initial_evaluations/display', locals: { initial_evaluation: ie } %>
+  <hr/>
+<% end %>
