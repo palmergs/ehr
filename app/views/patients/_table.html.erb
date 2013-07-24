@@ -1,5 +1,6 @@
 <% if defined? patients and patients %>
   <% if patients.count > 0 %>
+    <%= form_tag(nil, { method: 'get'}) do %>
     <table class="table">
       <thead>
         <tr>
@@ -9,11 +10,12 @@
           <th>DOB</th>
           <th>Last</th>
           <th>Scheduled</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tfoot>
         <tr>
-          <td colspan="6"><%= paginate patients.collection %></td>
+          <td colspan="7"><%= paginate patients.collection %></td>
         </tr>
       </tfoot>
       <tbody>
@@ -25,10 +27,17 @@
             <td><%= p.dob_str %></td>
             <td><%= appointment(p.last_interaction, false) %></td>
             <td><%= appointment(p.next_appointment.first, false) %></td>
+            <td class="actions">
+              <%= link_to 'Edit Patient', edit_patient_path(p), 
+                  class: 'bullet-edit' %>
+              <%= link_to 'Add Appointment', new_patient_appointment_path(p), 
+                  class: 'bullet-appointment' %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
+    <% end %>
   <% else %>
     <p class="info">No patients were found with the current search criteria.</p>
   <% end %>

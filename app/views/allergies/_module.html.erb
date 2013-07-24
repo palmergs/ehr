@@ -1,0 +1,12 @@
+<div class="module-block">
+  <h5>Allergies</h5>
+  <% unless @patient.allergies.empty? %>
+    <ul>
+    <% @patient.allergies.order('created_at desc').each do |a| %>
+      <li><span class="allergy"><%= a.medication_or_food %></span></li>
+    <% end %>
+    </ul>
+  <% else %>
+    <p class="info">No allergies recorded.</p>
+  <% end %>
+</div>

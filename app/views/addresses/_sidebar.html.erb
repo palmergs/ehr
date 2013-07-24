@@ -1,0 +1,11 @@
+<div class="module-block">
+  <h5>Addresses (<%= link_to "add", new_patient_address_path(@patient) %>)</h5>
+  <% if @patient.addresses.count > 0 %>
+    <% @patient.addresses.each do |addr| %>
+      <%= render partial: 'addresses/address', locals: { addr: addr } %>
+    <% end %>
+  <% else %>
+    <p>No addresses on file.</p>
+  <% end %>
+</div>
+

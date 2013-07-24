@@ -16,7 +16,7 @@ class InitialEvaluationsController < ApplicationController
   def new
     @initial_evaluation = @appointment.initial_evaluation
     if @initial_evaluation
-      redirect_to [@patient, @appointment, @initial_evaluation]
+      redirect_to edit_patient_appointment_initial_evaluation_path(@patient, @appointment, @initial_evaluation)
     else
       @initial_evaluation = InitialEvaluation.new
       @initial_evaluation.user = current_user
@@ -35,7 +35,7 @@ class InitialEvaluationsController < ApplicationController
     @initial_evaluation.appointment = @appointment
     respond_to do |format|
       if @initial_evaluation.save
-        format.html { redirect_to [@patient, @appointment, @initial_evaluation], notice: 'Initial evaluation was successfully created.' }
+        format.html { redirect_to [@patient, @appointment], notice: 'Initial evaluation was successfully created.' }
         format.json { render action: 'show', status: :created, location: @initial_evaluation }
       else
         format.html { render action: 'new' }
@@ -47,7 +47,7 @@ class InitialEvaluationsController < ApplicationController
   def update
     respond_to do |format|
       if @initial_evaluation.update(initial_evaluation_params)
-        format.html { redirect_to [@patient, @appointment, @initial_evaluation], notice: 'Initial evaluation was successfully updated.' }
+        format.html { redirect_to [@patient, @appointment], notice: 'Initial evaluation was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -76,7 +76,6 @@ class InitialEvaluationsController < ApplicationController
     def initial_evaluation_params
       params.require(:initial_evaluation).permit(:id_cc, 
           :hpi, 
-          :mental_status_exam, 
           :formulation, 
           :recommendation)
     end

@@ -6,3 +6,28 @@
     }
   }
 }
+
+.table {
+  th {
+    input, select, button {
+      display: block;
+      margin: 0;
+      color: #333;
+    }
+    select.chars2, input.chars2 {
+      width: 2em;
+    }
+    select.chars3, input.chars3 {
+      width: 3em;
+    }
+    select.chars4, input.chars4 {
+      width: 4em;
+    }
+    select.chars5, input.chars5 {
+      width: 5em;
+    }
+    select.chars6, input.chars6 {
+      width: 6em;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<% if defined? addr and addr %>
+  <div class="adr">
+    <% if addr.name.present? %><div class="type"><%= addr.name %></div><% end %>
+    <div class="street-address"><%=ns addr.street %></div>
+    <div><span class="locality"><%=ns addr.city %></span>, 
+      <span class="region"><%=ns addr.state %></span> 
+      <span class="postal-code"><%=ns addr.zip %></span></div>
+  </div>
+<% end %>

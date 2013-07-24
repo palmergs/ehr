@@ -8,6 +8,7 @@ class Patient < ActiveRecord::Base
   has_many :patient_doctor_relations, dependent: :destroy
   has_many :users,                    through: :patient_doctor_relations
 
+  has_many :addresses,                dependent: :destroy
   has_many :patient_notes,            dependent: :destroy
   has_many :allergies,                dependent: :destroy
   has_many :prescriptions,            dependent: :destroy

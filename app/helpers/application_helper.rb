@@ -34,4 +34,21 @@ module ApplicationHelper
       datetime.strftime("%l:%M, %m/%d/%Y")
     end
   end
+
+  def undefn text='undefined'
+    content_tag :span, text.to_s, class: 'undef'
+  end
+
+  def ns obj, field = nil
+    unless obj.nil?
+      if field
+        tmp = obj.call(field.to_sym)
+        tmp.nil? ? undefn : tmp
+      else
+        obj
+      end
+    else
+      undefn
+    end
+  end
 end

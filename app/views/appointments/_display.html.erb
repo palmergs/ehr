@@ -51,6 +51,9 @@
       <p class="text-info">No medication changes recorded.</p>
     <% end %>
 
+    <% if appointment.initial_evaluation %>
+      <%= render partial: 'initial_evaluations/display', locals: { initial_evaluation: appointment.initial_evaluation } %>
+    <% end %>
     <% if appointment.progress_note %>
       <%= render partial: 'progress_notes/display', locals: { progress_note: appointment.progress_note } %>
     <% end %>

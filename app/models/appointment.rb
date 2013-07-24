@@ -32,6 +32,18 @@ class Appointment < ActiveRecord::Base
     where(appointment_type: type) if APPOINTMENT_TYPES.include?(type)
   }
 
+  def canceled?
+    !self.canceled_at.nil?
+  end
+
+  def pending?
+    self.start_at > Time.now
+  end
+
+  def occurred?
+    !(canceled? or pending?)
+  end
+
   def summary
     "#{ self.appointment_type } #{ self.start_at_str }"
   end

@@ -1,0 +1,13 @@
+<div class="module-block">
+  <h5>Medication Changes</h5>
+  <% unless @patient.prescriptions.empty? %>
+    <ul>
+      <% @patient.prescriptions_in_order.each do |p| %>
+        <li><%= link_to prescription(p), patient_appointment_path(@patient, p.appointment) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="info">No prescriptions or medications changes recorded</p>
+  <% end %>
+</div>
+

@@ -1,9 +1,9 @@
 a.med-icon-link {
 
   display: block;
-  padding-left: 37px;
+  padding-left: 40px;
   padding-bottom: 1px;
-  line-height: 37px;
+  line-height: 43px;
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: 2px center;
@@ -13,12 +13,10 @@ a.med-icon-link {
   color: #666666;
   vertical-align: bottom;
   overflow: hidden;
-  border: 2px solid #eee;
-  border-radius: 4px;
   margin-bottom: 3px;
   &:hover {
-    background-color: #eee;
     color: #333;
+    text-decoration: underline;
   }
 }
 
@@ -46,6 +44,15 @@ a.med-mental-status {
   background-image: url('DefinedParameters.png');
 }
 
+.bullet-icon {
+  display: block;
+  padding-left: 20px;
+  min-height: 18px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 2px 2px;
+}
+
 .title-actions {
   display: block;
   float: right;
@@ -60,13 +67,12 @@ a.med-mental-status {
   }
 }
 
-.bullet-icon {
-  display: block;
-  padding-left: 20px;
-  min-height: 18px;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: 2px 2px;
+td.actions a.bullet-icon {
+  float: left;
+  width: 0px;
+  padding-right: 3px;
+  overflow: hidden;
+  text-indent: -9000px;
 }
 
 .appointment-InitialEvaluation {
@@ -138,6 +144,11 @@ a.med-mental-status {
 .bullet-uncancel {
   @extend .bullet-icon;
   background-image: url('silk/uncancel.png');
+}
+
+.bullet-appointment {
+  @extend .bullet-icon;
+  background-image: url('silk/calendar.png');
 }
 
 .bullet-rx {

@@ -1,6 +1,10 @@
 Ehr::Application.routes.draw do
 
+
+  resources :contacts
+
   resources :patients do
+    resources :addresses
     resources :allergies
     resources :appointments do
       resources :progress_notes

@@ -35,7 +35,7 @@ class ProgressNotesController < ApplicationController
     @progress_note.appointment = @appointment
     respond_to do |format|
       if @progress_note.save
-        format.html { redirect_to [@patient, @appointment, @progress_note], notice: 'Progress note was successfully created.' }
+        format.html { redirect_to [@patient, @appointment], notice: 'Progress note was successfully created.' }
         format.json { render action: 'show', status: :created, location: @progress_note }
       else
         format.html { render action: 'new' }
@@ -47,7 +47,7 @@ class ProgressNotesController < ApplicationController
   def update
     respond_to do |format|
       if @progress_note.update(progress_note_params)
-        format.html { redirect_to [@patient, @appointment, @progress_note], notice: 'Progress note was successfully updated.' }
+        format.html { redirect_to [@patient, @appointment], notice: 'Progress note was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

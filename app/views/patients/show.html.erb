@@ -10,63 +10,18 @@
 <% end %>
 
 <% content_for :quick_look do %>
-  <div class="module-block">
-    <div id="calendar"></div>
-    <%= javascript_tag do %>
-      $(document).ready(function() {    
-        $.get('<%= patient_appointments_path(@patient) %>', {}, function(data) {
-          var today = new Date();
-          var dt = new Date(today.getFullYear(), 
-              today.getMonth() - 2, 
-              today.getDate());
-          calendarViz.buildMonth(dt, data);
-        }, 'json');
-      });
-    <% end %>
-  </div>
-  <div class="module-block">
-    <h5>Allergies</h5>
-    <% unless @patient.allergies.empty? %>
-      <ul>
-      <% @patient.allergies.order('created_at desc').each do |a| %>
-        <li><span class="allergy"><%= a.medication_or_food %></span></li>
-      <% end %>
-      </ul>
-    <% else %>
-      <p class="info">No allergies recorded.</p>
-    <% end %>
-  </div>
-
-  <div class="module-block">
-    <h5>Medication Changes</h5>
-    <% unless @patient.prescriptions.empty? %>
-      <ul>
-        <% @patient.prescriptions_in_order.each do |p| %>
-          <li><%= prescription(p) %></li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p class="info">No prescriptions or medications changes recorded</p>
-    <% end %>
-  </div>
-
-  <div class="module-block">
-    <h5>Appointments and Visits</h5>
-    <% unless @patient.appointments.empty? %>
-      <ul>
-        <% @patient.appointments.order('start_at desc').each do |a| %>
-          <li>
-            <%= appointment(a) %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p class="info">No appointments or other visits recorded</p>
-    <% end %>
-  </div>
+  <%= render partial: 'patients/sidebar' %>
 <% end %>
 
+<% if @patient.appointments.occurred_before.count > 0 %>
+  <% @patient.appointments.occurred_before.order('start_at desc').each do |a| %>
+    <%= render partial: 'appointments/display', locals: { appointment: a } %>
+  <% end %>
+<% end %>
 
-<% @patient.appointments.occurred_before.order('start_at desc').each do |a| %>
-  <%= render partial: 'appointments/display', locals: { appointment: a } %>
+<% if @patient.appointments.scheduled_after.count > 0 %>
+  <h5 class="sep">Upcoming Appointments</h5>
+  <% @patient.appointments.scheduled_after.order('start_at asc').each do |a| %>
+    <%= render partial: 'appointments/display', locals: { appointment: a } %>
+  <% end %>
 <% end %>
