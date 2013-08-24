@@ -10,6 +10,10 @@ class AppointmentsPresenter < CollectionPresenter
     @collection = @criteria.page(page(params)).per(limit(params))
   end
 
+  def week
+    
+  end
+
   def sortable_columns
     [:start_at, 'patients.ident'.to_sym]
   end

@@ -4,7 +4,9 @@
 
 <% content_for :actions do %>
   <div class="action-block">
-    <%= link_to 'Add New Patient', new_patient_path, class: 'med-icon-link med-patient' %>
+    <%= link_to 'Add New Patient', 
+        new_patient_path, 
+        class: 'med-icon-link med-patient' %>
   </div>
 <% end %>
 
@@ -15,13 +17,7 @@
     <% if hash.count > 0 %>
       <%= hash.each_pair do |time_str, appts| %>
         <h6><%= time_str %></h6>
-        <% if appts.count > 0 %>
-          <ul>
-          <% appts.each do |appt| %>
-            <li><%= appt_in_sidebar appt %></li>
-          <% end %>
-          </ul>
-        <% end %>
+        <%= appt_list(appts) %>
       <% end %>
     <% else %>
       <h6>Today</h6>
@@ -32,15 +28,7 @@
         DateTime.tomorrow.beginning_of_day, 
         5.days.from_now.end_of_day).each_pair do |date, appts| %>
       <h6><%= date.strftime('%a, %b %-e') %></h6>
-      <% if appts.count > 0 %>
-        <ul>
-          <% appts.each do |appt| %>
-            <li><%= appt_in_sidebar appt %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>No appointments scheduled.</p>
-      <% end %>
+      <%= appt_list(appts) %>
     <% end %>
   </div>
 
@@ -63,3 +51,8 @@
     <% end %>
   </div>
 <% end %>
+
+<% current_user.upcoming_patients(Time.now, 4.days.from_now).each do |pt| %>
+  <%= render partial: 'patients/summary', locals: { patient: pt } %>
+<% end %>
+

@@ -1,14 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'rails',          '4.0.0.rc1'
+gem 'rails',          '4.0.0'
 gem 'pg'
 gem 'bcrypt-ruby',    '~> 3.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder',       '~> 1.0.1'
+gem 'redcarpet'
 gem 'bootstrap-sass'
 gem 'uuid'
-gem 'devise', github: 'plataformatec/devise', branch: 'rails4'
+gem 'devise',         '~> 3.0.1' 
 gem 'kaminari'
 gem 'builder'
 

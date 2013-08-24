@@ -19,7 +19,7 @@
         <%= link_to 'Un-cancel Appointment?',
             uncancel_patient_appointment_path(@patient, appointment),
             class: 'bullet-icon bullet-uncancel', 
-            confirm: 'Are you sure you want to uncancel this appointment?' %>
+            data: { confirm: 'Are you sure you want to uncancel this appointment?' } %>
       <% end %>
       <%= link_to 'Record Medication Change', 
           new_patient_appointment_prescription_path(@patient, appointment),

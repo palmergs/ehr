@@ -1,13 +1,13 @@
 <% if defined? initial_evaluation and initial_evaluation %>
   <label>ID</label>
-  <p><%= initial_evaluation.id_cc %></p>
+  <div><%=md initial_evaluation.id_cc %></div>
 
   <label>HPI (History of Present Illness)</label>
-  <p><%= initial_evaluation.hpi %></p>
+  <div><%=md initial_evaluation.hpi %></div>
 
   <label>Formulation</label>
-  <p><%= initial_evaluation.formulation %></p>
+  <div><%=md initial_evaluation.formulation %></div>
 
   <label>Recommendation / Plan</label>
-  <p><%= initial_evaluation.recommendation %></p>
+  <div><%=md initial_evaluation.recommendation %></div>
 <% end %>

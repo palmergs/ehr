@@ -6,4 +6,10 @@ module PatientsHelper
       image_tag 'silk/male.png'
     end
   end
+
+  def patient_title patient
+    str = "#{ patient.name }, #{ patient.long_gender }"
+    str << ", #{ patient.age } y.o." if patient.age
+    str
+  end
 end

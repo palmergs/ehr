@@ -29,4 +29,13 @@ module AppointmentsHelper
       ].join.html_safe
     end
   end
+
+  def appt_list appts
+    if appts and appts.count > 0 
+      items = appts.map {|apt| content_tag(:li, appt_in_sidebar(apt))}
+      content_tag(:ul) { items.join("\n").html_safe }
+    else
+      content_tag :p, 'No appointments scheduled.'
+    end
+  end
 end

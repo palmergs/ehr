@@ -1,3 +1,21 @@
-// Place all the styles related to the Patients controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.patient-summary {
+  overflow: hidden;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  h5 {
+   margin-left: 5px;
+   font-size: 18px;
+  }
+  .actions {
+    float: right;
+    width: 80px;
+    a {
+      float: right;
+      width: 0px;
+      padding-right: 3px;
+      overflow: hidden;
+      text-indent: -9000px;
+    }
+  }
+}

@@ -30,6 +30,16 @@ class User < ActiveRecord::Base
     [fname, lname].select(&:present?).map {|s| s[0].upcase}.join
   end
 
+  def upcoming_patients start_at = Time.now, end_at = Time.now.end_of_day
+    patients = appointments.time_between(start_at, end_at).
+        order('start_at asc').
+        map do |appt|
+      appt.patient
+    end
+    Rails.logger.info "Patients = #{ patients.inspect }"
+    patients
+  end
+
   def appointments_by_hour start_at = Time.now, end_at = Time.now.end_of_day
     appointments.
         time_between(start_at, end_at).

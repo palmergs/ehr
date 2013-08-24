@@ -39,6 +39,13 @@ module ApplicationHelper
     content_tag :span, text.to_s, class: 'undef'
   end
 
+  def md str
+    if str
+      @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+      @markdown.render(str).html_safe
+    end
+  end
+
   def ns obj, field = nil
     unless obj.nil?
       if field

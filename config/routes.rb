@@ -1,10 +1,8 @@
 Ehr::Application.routes.draw do
 
-
-  resources :contacts
-
   resources :patients do
     resources :addresses
+    resources :contacts
     resources :allergies
     resources :appointments do
       resources :progress_notes
@@ -23,7 +21,7 @@ Ehr::Application.routes.draw do
     end
   end
 
-  resources :calendars
+  resources :calendars, only: [ :index ]
 
   devise_for :users
 

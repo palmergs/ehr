@@ -1,12 +1,12 @@
 <% if defined? progress_note and progress_note %>
   <label>Interim History</label>
-  <p><%= progress_note.interim_history %></p>
+  <div><%=md progress_note.interim_history %></div>
 
   <label>Medications and Side Effects</label>
-  <p><%= progress_note.medications_side_effects %></p>
+  <div><%=md progress_note.medications_side_effects %></div>
 
   <label>Impression and Diagnosis</label>
-  <p><%= progress_note.impression_diagnosis %></p>
+  <div><%=md progress_note.impression_diagnosis %></div>
 
   <label>Mental Status Exam</label>
   <div class="container-fluid">
@@ -51,5 +51,5 @@
   </div>
 
   <label>Plan</label>
-  <p><%= progress_note.plan %></p>
+  <div><%=md progress_note.plan %></div>
 <% end %>

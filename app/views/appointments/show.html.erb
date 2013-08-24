@@ -10,7 +10,7 @@
     <% if @appointment.canceled? %>
       <%= link_to 'Uncancel Appointment', uncancel_patient_appointment_path(@patient, @appointment), 
           class: 'med-icon-link med-appointment', 
-          confirm: 'Are you sure you want to uncancel this appointment?' %>
+          data: { confirm: 'Are you sure you want to uncancel this appointment?' } %>
     <% else %>
       <% if @appointment.appointment_type == AppointmentType::INITIAL_EVALUATION %>
         <%= link_to 'Edit Initial Evaluation', 

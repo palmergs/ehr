@@ -23,3 +23,42 @@ body {
 .day-Canceled { fill: #FF0062; }
 .day-Pending { fill: #31AF62; }
 
+.calendar-week {
+  display: block;
+  .calendar-week-header {
+    display: block;
+    overflow: hidden;
+    .calendar-cell {
+      color: #aaa;
+      height: 20px;
+      border-bottom: 1px solid #aaa;
+      h5 {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .calendar-hour-header {
+      border: none;
+    }
+  }
+  .calendar-week-hour {
+    display: block;
+    overflow: hidden;
+  }
+  .odd {
+    background-color: #eee;
+  }
+  .calendar-cell {
+    float: left;
+    width: 12.5%;
+    height: 60px;
+    border-bottom: 1px dotted #aaa;
+  }
+  .calendar-hour-header {
+    text-align: right;
+    color: #aaa;
+    border: none;
+    font-family: 'Lintel-Light';
+  }
+}
