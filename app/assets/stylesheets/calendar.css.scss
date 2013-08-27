@@ -24,41 +24,52 @@ body {
 .day-Pending { fill: #31AF62; }
 
 .calendar-week {
-  display: block;
-  .calendar-week-header {
+  overflow: hidden;
+  .appt {
     display: block;
-    overflow: hidden;
-    .calendar-cell {
-      color: #aaa;
-      height: 20px;
-      border-bottom: 1px solid #aaa;
-      h5 {
-        text-align: center;
-        margin: 0;
-        padding: 0;
-      }
-    }
-    .calendar-hour-header {
-      border: none;
-    }
+    position: absolute;
+    background-color: #f00;
+    z-index: 10;
+    width: 12.5%;
   }
-  .calendar-week-hour {
-    display: block;
-    overflow: hidden;
-  }
-  .odd {
-    background-color: #eee;
-  }
-  .calendar-cell {
+  .calendar-col {
     float: left;
     width: 12.5%;
-    height: 60px;
-    border-bottom: 1px dotted #aaa;
+    .calendar-cell {
+      height: 20px;
+      border-top: 1px solid #fff;
+      h5 {
+        display: block;
+        margin: 0;
+        padding: 0;
+        font-family: 'Lintel-Light';
+      }
+    }
+    .odd {
+      border-top: 1px dotted #eee;
+    }
+    .even {
+      border-top: 1px solid #aaa;
+    }
+    .calendar-header {
+      border-top: 1px solid #aaa;
+      h5 {
+        text-align: center;
+      }
+    }
   }
-  .calendar-hour-header {
-    text-align: right;
-    color: #aaa;
-    border: none;
-    font-family: 'Lintel-Light';
+  .col-even {
+    .even, .odd {
+      background-color: #eee;
+    }
+  }
+  .calendar-header-col {
+    .calendar-cell {
+      h5 {
+        text-align: right;
+        vertical-align: middle;
+        padding-right: 5px;
+      }
+    }
   }
 }

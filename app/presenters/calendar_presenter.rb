@@ -17,11 +17,15 @@ class CalendarPresenter < CollectionPresenter
         joins(:patient).
         joins(:user)
     @criteria.order('start_at asc')
-    @collection = @criteria.all
-
-    @calendar = @range.inject({}) { |hash, dt| hash[dt] = {}; hash }
-    @collection.each do |appt|
-      @calendar[appt.start_at.to_date][appt.start_at.hour] = appt
+    @collection = @criteria.all.map do |appt|
+      {
+        id: appt.id,
+        patient_id: appt.patient_id,
+        patient_ident: appt.patient.ident,
+        user_id: appt.user_id,
+        user_name: appt.user.name,
+        appt_id: appt.calendar_key
+      }
     end
   end
 

@@ -76,6 +76,14 @@ class Appointment < ActiveRecord::Base
     end
   end
 
+  def calendar_key 
+    [
+      start_at.strftime('%Y%m%d'),
+      start_at.strftime('%H').to_i,
+      start_at.min / 30
+    ].join('-')
+  end
+
   def duration_mins
     if start_at and end_at and end_at > start_at
       ((end_at - start_at) * 3600).to_i 

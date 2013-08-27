@@ -1,0 +1,11 @@
+<% if defined? patient and patient %>
+  <div class="patient-summary" id="<%= patient.ident %>">
+    <h5><%= link_to patient_title(patient), patient %> 
+      <div class="actions">
+        <%= link_to 'Edit Patient', edit_patient_path(p), class: 'bullet-edit' %>
+        <%= link_to 'Add Appointment', new_patient_appointment_path(p), 
+            class: 'bullet-appointment' %>
+      </div>
+    </h5>
+  </div>
+<% end %>

@@ -1,29 +1,42 @@
 <% (0..2).each do |wk_idx| %>
   <div class="calendar-week">
-    <div class="calendar-week-header">
-      <div class="calendar-cell calendar-hour-header"></div>
-      <% (0..6).each do |dy_idx| %>
+    <div class="calendar-col calendar-header-col">
+      <div class="calendar-cell"></div>
+      <% (14..40).each do |idx| %>
         <div class="calendar-cell">
-          <h5><%= @presenter.range[7 * wk_idx + dy_idx] %></h5>
+          <h5>
+            <% if idx % 2 == 0 %>
+              <%= idx > 24 ? "#{ (idx / 2) - 12 }:00 PM" : "#{ idx / 2}:00 AM" %>
+            <% end %>
+          </h5>
         </div>
       <% end %>
-    </div>
-    <% (7..20).each do |hr_idx| %>
-      <div class="calendar-week-hour">
-        <div class="calendar-cell calendar-hour-header">
-          <%= hr_idx > 12 ? "#{ hr_idx - 12 }:00 PM" : "#{ hr_idx }:00 AM" %>&nbsp;
+    </div> 
+    <% (0..6).each do |dy_idx| %>
+      <% dy = @presenter.range[7 * wk_idx + dy_idx ] %>
+      <div class="calendar-col <%= cycle('col-even', 'col-odd', name: 'col') %>">
+        <div class="calendar-cell calendar-header">
+          <h5><%= dy %></h5>
         </div>
-      <% (0..6).each do |dy_idx| %>
-        <div id="<%= @presenter.range[7 * wk_idx + dy_idx ].strftime('%Y%m%d') %>-<%= hr_idx %>" class="calendar-cell <%= cycle('even', 'odd') %>">
-
-        </div>
-      <% end %>
+        <% (14..41).each do |idx| %>
+          <div class="calendar-cell <%= cycle('even', 'odd', name: 'row' ) %>" 
+               id="<%= dy.strftime('%Y%m%d') %>-<%= idx / 2 %>-<%= idx % 2 %>">
+          </div>
+        <% end %>
+        <% reset_cycle('row') %>
       </div>
     <% end %>
+    <% reset_cycle('col') %>
   </div>
 <% end %>
-
-
-<% @presenter.calendar.each_pair do |dt, hash| %>
-  <p><%= dt %><br/><%= hash.inspect %></p>
+<%= javascript_tag do %>
+  var appts = <%= @presenter.collection.to_json.html_safe %>;
+  for(var i in appts) {
+    var appt = appts[i];
+    var cell = $('#'+ appt['appt_id']);
+    var block = $('<div class="appt">'+ appt.patient_ident +'</div>');
+    block.css('top', cell.position().top).
+        css('left', cell.position().left);
+    $('.calendar-week').append(block);
+  }
 <% end %>
