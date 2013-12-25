@@ -1,0 +1,15 @@
+<% content_for :page_title do %>
+  <h2>New Contact for <%= @patient.ident %></h2>
+<% end %>
+
+<%= form_for([@patient, @contact], html: { class: 'form-horizontal' }) do |f| %>
+  <%= errors_in @contact %>
+  <%= render partial: 'contacts/form', locals: { f: f } %>
+  <hr/>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+      <%= link_to 'Back', @patient %>
+    </div>
+  </div>
+<% end %>

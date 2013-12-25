@@ -1,0 +1,10 @@
+<% if defined? contact and contact %>
+  <div>
+    <% if contact.telephone? %>
+      <a class="tel" href="tel:<%= contact.contact %>"><%= contact.contact %></a>
+    <% else %>
+      <a class="email" href="mailto:<%= contact.contact %>"><%= contact.contact %></a>
+    <% end %>
+    <span class="note sidebar-note"><%= contact.msg_instr %></span>
+  </div>
+<% end %>

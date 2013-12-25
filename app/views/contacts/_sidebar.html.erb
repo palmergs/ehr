@@ -1,0 +1,10 @@
+<div class="module-block">
+  <h5>Contacts (<%= link_to 'add', new_patient_contact_path(@patient) %>)</h5>
+  <% if @patient.contacts.count > 0 %>
+    <% @patient.contacts.each do |c| %>
+      <%= render partial: 'contacts/contact', locals: { contact: c } %>
+    <% end %>
+  <% else %>
+    <p>No contacts on file.</p>
+  <% end %>
+</div>

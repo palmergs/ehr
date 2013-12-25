@@ -1,0 +1,17 @@
+<div class="control-group">
+  <%= f.label :name, 'Type (e.g. Phone, Email)', class: 'control-label' %>
+  <div class="controls">
+    <span class="span6">
+      <%= f.text_field :name, class: 'input-block-level' %>
+    </span>
+    <span class="span6">
+      <%= f.select :msg_instr, Contact::INSTRUCTIONS, class: 'input-block-level' %>
+    </span>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :contact, 'Number or Address', class: 'control-label' %>
+  <div class="controls">
+      <%= f.text_field :contact, class: 'input-block-level' %>
+  </div>
+</div>

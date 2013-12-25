@@ -12,8 +12,5 @@ class UserTest < ActiveSupport::TestCase
     assert_not_nil hash
     assert_kind_of Hash, hash
     assert hash.count, 10
-    hash.each_pair do |key, value|
-      p "key=#{ key } value=#{ value.inspect }"
-    end
   end
 end
