@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: one
+  patient: one
+  appointment: one
+  id_cc: MyString
+  hpi: MyString
+  formulation: MyString
+  recommendation: MyString
+
+two:
+  user: one
+  patient: one
+  appointment: two
+  id_cc: MyString
+  hpi: MyString
+  formulation: MyString
+  recommendation: MyString

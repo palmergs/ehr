@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130721154702) do
+ActiveRecord::Schema.define(version: 20130831141704) do
 
   create_table "addresses", force: true do |t|
     t.integer  "patient_id"
@@ -61,11 +61,11 @@ ActiveRecord::Schema.define(version: 20130721154702) do
     t.integer  "user_id"
     t.integer  "patient_id"
     t.integer  "appointment_id"
-    t.string   "id_cc"
-    t.string   "hpi"
-    t.string   "mental_status_exam"
-    t.string   "formulation"
-    t.string   "recommendation"
+    t.text     "id_cc",              default: ""
+    t.text     "hpi",                default: ""
+    t.text     "mental_status_exam", default: ""
+    t.text     "formulation",        default: ""
+    t.text     "recommendation",     default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
