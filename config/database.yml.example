@@ -20,7 +20,7 @@ development:
   database: ehr_development
   pool: 5
   username: ehr
-  password: raptor77
+  password: apassword
   host: localhost
   port: 5432
 
@@ -51,7 +51,7 @@ test:
   database: ehr_test
   pool: 5
   username: ehr
-  password: raptor77
+  password: apassword
   host: localhost
   port: 5432
 
@@ -61,6 +61,6 @@ production:
   database: ehr_production
   pool: 5
   username: ehr
-  password: raptor77
+  password: apassword
   host: localhost
   port: 5432
